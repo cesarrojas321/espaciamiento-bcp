@@ -194,16 +194,30 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         </div>
         <small class="esp-nota">Pandeo: lo que subes hasta recuperar el peso. Espaciamiento: lo que levantas después.</small>
       </div>
+      <details class="esp-marcas"><summary>Paso a paso en boca de pozo: las marcas</summary><div>
+        <ol class="esp-pasos">
+          <li><b>Tocar.</b> Baja el rotor hasta que toque el pin de paro (el indicador pierde peso). Anota con qué cabilla tocaste y cuántos pies sobran sobre la brida. <b>Marca 1</b> en la cabilla, al ras de la brida, con marcador de tubería.</li>
+          <li><b>Pandeo.</b> Levanta despacio hasta recuperar todo el peso de la sarta. <b>Marca 2</b> al ras de la brida. Entre la marca 1 y la 2 está el pandeo (unos 2 ft).</li>
+          <li><b>Rectificar.</b> Vuelve a bajar hasta tocar y confirma que cae en la marca 1; levanta otra vez al peso y confirma la marca 2. Si no coinciden, repite.</li>
+          <li><b>Espaciamiento.</b> Se suma al pandeo en la cuenta. Regla rápida: 1 ft por cada 1000 ft de profundidad (a 3.000 ft, 3 ft); o la regla de tu cabilla, abajo en «¿Cuánto espaciamiento levantar?».</li>
+          <li><b>La cuenta, con la cabilla en los burros.</b> Cuántas cabillas sacar y con qué niples completar para que entre la barra pulida: es lo que calcula esta página.</li>
+          <li><b>Barra pulida y repaseo.</b> Instala niples y barra pulida, y baja hasta tocar: sobre la brida debe quedar la barra libre menos lo levantado. Ej.: 7 − 5 = 2 ft = 24".</li>
+          <li><b>Posición de trabajo.</b> Levanta lo del pandeo y el espaciamiento, arma prensaestopa, cabezal y grampa, y deja el stick-up sobre la grampa.</li>
+        </ol>
+      </div></details>
       <details class="esp-ayuda"><summary>¿Cuánto espaciamiento levantar?</summary><div>
         <p class="esp-nota">Espaciamiento = estiramiento que va a tener la sarta trabajando + holgura del niple de paro.</p>
+        <div class="esp-total"><span>Profundidad del pin de paro</span><b data-o="ayProf">—</b></div>
+        <small class="esp-nota" data-o="ayProfTxt"></small>
+        <div class="esp-r"><span>Regla rápida: 1 pie por cada 1000 pies</span><b data-o="ayPie">—</b><small data-o="ayPieTxt"></small></div>
         <div class="esp-campo"><label for="esp-diam">Diámetro de cabilla</label><select id="esp-diam" data-ay="diam"><option value="1">1"</option><option value="1-1/8" selected>1-1/8"</option><option value="1-1/4">1-1/4"</option><option value="1-1/2">1-1/2"</option></select></div>
         <div class="esp-dos">
           <div class="esp-campo"><label for="esp-ayF">Carga por presión</label><div class="esp-step"><button type="button" data-delta="-500" data-para="ayF" aria-label="Restar 500">−</button><input id="esp-ayF" data-k="ayF" type="number" inputmode="decimal" step="500" min="0" value="6000"><span class="u">lb</span><button type="button" data-delta="500" data-para="ayF" aria-label="Sumar 500">+</button></div></div>
           <div class="esp-campo"><label for="esp-ayH">Holgura del niple</label><div class="esp-step"><button type="button" data-delta="-1" data-para="ayH" aria-label="Restar 1">−</button><input id="esp-ayH" data-k="ayH" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="ayH" aria-label="Sumar 1">+</button></div></div>
         </div>
         <div class="esp-r"><span>Con la ley de Hooke</span><b data-o="ayHooke">—</b><small data-o="ayHookeTxt"></small></div>
-        <div class="esp-r"><span>Con la regla de campo</span><b data-o="ayRegla">—</b><small data-o="ayReglaTxt"></small></div>
-        <div class="esp-ej"><button type="button" data-usar="hooke">Usar Hooke</button><button type="button" data-usar="regla">Usar la regla</button></div>
+        <div class="esp-r"><span>Regla de campo según la cabilla</span><b data-o="ayRegla">—</b><small data-o="ayReglaTxt"></small></div>
+        <div class="esp-ej"><button type="button" data-usar="pie">Usar 1 ft por 1000 ft</button><button type="button" data-usar="regla">Usar la regla de la cabilla</button><button type="button" data-usar="hooke">Usar Hooke</button></div>
       </div></details>
       <h3>Medidas del cabezal</h3>
       <small class="esp-nota">Valores de ejemplo: reemplázalos por lo que mides con la cinta en tu pozo.</small><div class="esp-dos"><div class="esp-campo"><label for="esp-prensa">Prensaestopa (stuffing box)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="prensa" aria-label="Restar 1">−</button><input id="esp-prensa" data-k="prensa" type="number" inputmode="decimal" step="1" min="0" value="24"><span class="u">pulg</span><button type="button" data-delta="1" data-para="prensa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-cabezal">Cabezal</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabezal" aria-label="Restar 1">−</button><input id="esp-cabezal" data-k="cabezal" type="number" inputmode="decimal" step="1" min="0" value="42"><span class="u">pulg</span><button type="button" data-delta="1" data-para="cabezal" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-grampa">Grampa</label><div class="esp-step"><button type="button" data-delta="-1" data-para="grampa" aria-label="Restar 1">−</button><input id="esp-grampa" data-k="grampa" type="number" inputmode="decimal" step="1" min="0" value="6"><span class="u">pulg</span><button type="button" data-delta="1" data-para="grampa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-stick">Stick-up (sobre la grampa)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="stick" aria-label="Restar 1">−</button><input id="esp-stick" data-k="stick" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="stick" aria-label="Sumar 1">+</button></div></div></div>
@@ -214,7 +228,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div class="esp-campo"><label for="esp-rotorNiple">Rotor + niple de maniobra (+ cuello)</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="rotorNiple" aria-label="Restar 0.5">−</button><input id="esp-rotorNiple" data-k="rotorNiple" type="number" inputmode="decimal" step="0.5" min="0" value="36.46"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="rotorNiple" aria-label="Sumar 0.5">+</button></div><small>Para calcular la profundidad del rotor. Ej.: rotor 32,46 ft + niple 4 ft.</small></div>
         <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">Niples de cabilla que tienes</span><div class="esp-chips"><button type="button" data-niple="1" aria-pressed="false">1 ft</button><button type="button" data-niple="2" aria-pressed="true">2 ft</button><button type="button" data-niple="3" aria-pressed="false">3 ft</button><button type="button" data-niple="4" aria-pressed="true">4 ft</button><button type="button" data-niple="6" aria-pressed="true">6 ft</button><button type="button" data-niple="8" aria-pressed="true">8 ft</button><button type="button" data-niple="10" aria-pressed="true">10 ft</button><button type="button" data-niple="12" aria-pressed="false">12 ft</button></div><small>Se combinan hasta 3 niples.</small></div>
       </div></details>
-      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button></div>
+      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button><button type="button" data-ejemplo="c">Ejemplo C: 25 ft, #120, 10 ft</button></div>
     </section>
     <section class="esp-panel" aria-label="Resultado" aria-live="polite">
       <h2>Qué hacer</h2>
@@ -459,6 +473,7 @@ const GUARDAR = "espaciamiento-bcp-v2";
 const EJEMPLOS = {
   a: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
   b: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
+  c: { largoCabilla: 25, cabilla: 120, afuera: 10, pandeo: 2, espacio: 3 },
 };
 function dibujo(r) {
   const d = r.d, e = r.elegida, Lr = d.largoCabilla;
@@ -508,10 +523,13 @@ function init(root) {
     const pies = Math.max(0, st.cabilla * st.largoCabilla - st.afuera);
     const F = parseFloat(q('[data-k="ayF"]').value) || 0, hol = parseFloat(q('[data-k="ayH"]').value) || 0;
     const r = sarta(sel.value, pies, 1.0, F);
-    const hooke = (r.porCarga + hol) / 12, regla = r.regla / 12;
+    const hooke = (r.porCarga + hol) / 12, regla = r.regla / 12, pie = pies / 1000;
+    out("ayProf", fmt(pies) + " ft");
+    out("ayProfTxt", "Cabilla #" + st.cabilla + " × " + ft(st.largoCabilla) + " ft − " + ft(st.afuera) + " ft que sobran = " + fmt(pies) + " ft (solo cabillas; si hay niples en la sarta, súmalos).");
+    out("ayPie", ft(pie) + " ft"); out("ayPieTxt", "1 ft × " + fmt(pies / 1000, 2) + " miles de pies. Equivale a 12 pulgadas por cada 1000 ft: la regla de la cabilla de 1 pulgada.");
     out("ayHooke", ft(hooke) + " ft"); out("ayHookeTxt", fmt(r.porCarga, 1) + '" de estiramiento con ' + fmt(F) + " lb a " + fmt(pies) + " ft + " + fmt(hol) + '" de holgura');
     out("ayRegla", ft(regla) + " ft"); out("ayReglaTxt", CABILLAS[sel.value].regla + '" por cada 1000 ft × ' + fmt(pies / 1000, 2) + " (conservadora, supone unas 25.000 lb)");
-    return { hooke: Math.round(hooke * 2) / 2, regla: Math.round(regla * 2) / 2 };
+    return { hooke: Math.round(hooke * 2) / 2, regla: Math.round(regla * 2) / 2, pie: Math.round(pie * 2) / 2 };
   }
   function render() {
     const r = cuentaDeCampo(st);
