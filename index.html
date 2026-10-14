@@ -209,7 +209,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div class="esp-campo"><label for="esp-rotorNiple">Rotor + niple de maniobra (+ cuello)</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="rotorNiple" aria-label="Restar 0.5">−</button><input id="esp-rotorNiple" data-k="rotorNiple" type="number" inputmode="decimal" step="0.5" min="0" value="36.46"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="rotorNiple" aria-label="Sumar 0.5">+</button></div><small>Para calcular la profundidad del rotor. Ej.: rotor 32,46 ft + niple 4 ft.</small></div>
         <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">Niples de cabilla que tienes</span><div class="esp-chips"><button type="button" data-niple="1" aria-pressed="false">1 ft</button><button type="button" data-niple="2" aria-pressed="true">2 ft</button><button type="button" data-niple="3" aria-pressed="false">3 ft</button><button type="button" data-niple="4" aria-pressed="true">4 ft</button><button type="button" data-niple="6" aria-pressed="true">6 ft</button><button type="button" data-niple="8" aria-pressed="true">8 ft</button><button type="button" data-niple="10" aria-pressed="true">10 ft</button><button type="button" data-niple="12" aria-pressed="false">12 ft</button></div><small>Se combinan hasta 3 niples.</small></div>
       </div></details>
-      <div class="esp-ej"><button type="button" data-ejemplo="amigo">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="reporte">Ejemplo B: #134, 27 ft</button></div>
+      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button></div>
     </section>
     <section class="esp-panel" aria-label="Resultado" aria-live="polite">
       <h2>Qué hacer</h2>
@@ -229,9 +229,9 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     </section>
   </div>
 </div>
-  <section class="caso" aria-label="Caso práctico">
-    <h2>Caso práctico: un espaciamiento de campo, verificado</h2>
-    <p>Datos de un reporte de instalación de rotor (sin datos del pozo ni del cliente). La cuenta reproduce exactamente lo que se hizo en el pozo.</p>
+  <section class="caso" aria-label="Caso de práctica">
+    <h2>Caso de práctica: un espaciamiento completo</h2>
+    <p>Un caso de práctica con números de campo. La calculadora reproduce cada paso de la cuenta.</p>
     <div class="caso-tabla"><table>
       <thead><tr><th>Paso</th><th>Cuenta</th><th>Resultado</th></tr></thead>
       <tbody>
@@ -240,11 +240,11 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <tr><td>Levantado: pandeo 24" + espaciamiento 48"</td><td class="n">72" = 6 ft</td><td class="ok">6 ft</td></tr>
         <tr><td>Barra pulida 40 ft con barra libre 84" (7 ft)</td><td class="n">40 − 7</td><td class="ok">33 ft adentro</td></tr>
         <tr><td>Fondo del rotor ya espaciado (rotor 32,46 + niple 4 + cabillas + niples + barra)</td><td class="n">32,46 + 4 + 3.930 + 24 + 33</td><td class="ok">4.023,46 ft ✓</td></tr>
-        <tr><td>Pies de la #134 que sobraban al tocar (no anotado en el reporte)</td><td class="n">4.056,46 − 4.029,46</td><td class="ok">27 ft</td></tr>
+        <tr><td>Pies de la #134 que sobraban al tocar</td><td class="n">4.056,46 − 4.029,46</td><td class="ok">27 ft</td></tr>
         <tr><td>Hueco después de sacar 3 cabillas</td><td class="n">−3 + 60</td><td class="ok">57 ft</td></tr>
         <tr><td>Niples para completar</td><td class="n">57 − 33</td><td class="ok">24 ft = 3 × 8 ✓</td></tr>
         <tr><td>Repaseo esperado sobre la brida</td><td class="n">84" − 72"</td><td class="ok">12"</td></tr>
-        <tr><td>Peso de la sarta (indicador: 12.000 lb)</td><td class="n">3.930 ft × 3,68 lb/ft en fluido</td><td class="ok">≈ 12.600 lb ✓</td></tr>
+        <tr><td>Peso de la sarta en el fluido</td><td class="n">3.930 ft × 3,68 lb/ft en fluido</td><td class="ok">≈ 12.600 lb ✓</td></tr>
       </tbody>
     </table></div>
     <button type="button" data-cargar-caso>Cargar este caso en la calculadora</button>
@@ -255,7 +255,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     <div class="decod-grid">
       <div class="decod-entrada">
         <label class="decod-campo">Modelo de la bomba<span class="decod-caja"><input data-db="modelo" type="text" value="98-1580" spellcheck="false" autocomplete="off" autocapitalize="characters"></span></label>
-        <div class="decod-chips"><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600 <small>Baker</small></button><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600 <small>NOV</small></button><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580 <small>NOV</small></button><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600 <small>NOV</small></button><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600 <small>NOV</small></button><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600 <small>Weatherford</small></button><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450 <small>KUDU (SLB)</small></button><button type="button" data-modelo="20-40-2100" aria-pressed="false">20-40-2100 <small>Geremia</small></button></div>
+        <div class="decod-chips"><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600 <small></small></button><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600 <small>NOV</small></button><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580 <small>NOV</small></button><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600 <small>NOV</small></button><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600 <small>NOV</small></button><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600 <small>Weatherford</small></button><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450 <small>KUDU (SLB)</small></button><button type="button" data-modelo="20-40-2100" aria-pressed="false">20-40-2100 <small>Geremia</small></button></div>
         <p data-db="tipo"></p>
         <h3>Para estimar el caudal</h3>
         <div class="decod-dos">
@@ -278,7 +278,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     <h3>Tabla rápida (toca un código para cargarlo)</h3>
     <div class="decod-tabla"><table>
       <thead><tr><th>Código</th><th class="r ancho">bpd a 100 rpm</th><th class="r">bpd por rpm</th><th class="r">A 300 rpm (teórico)</th><th class="r">Presión máx. (psi)</th></tr></thead>
-      <tbody><tr><td><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600</button><small>Baker</small></td><td class="r ancho">352</td><td class="r k">3,5</td><td class="r">1.057</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600</button><small>NOV</small></td><td class="r ancho">503</td><td class="r k">5,0</td><td class="r">1.510</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580</button><small>NOV</small></td><td class="r ancho">616</td><td class="r k">6,2</td><td class="r">1.849</td><td class="r">2.245</td></tr><tr><td><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600</button><small>NOV</small></td><td class="r ancho">692</td><td class="r k">6,9</td><td class="r">2.076</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600</button><small>Weatherford</small></td><td class="r ancho">818</td><td class="r k">8,2</td><td class="r">2.453</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600</button><small>NOV</small></td><td class="r ancho">1.038</td><td class="r k">10,4</td><td class="r">3.113</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450</button><small>KUDU (SLB)</small></td><td class="r ancho">1.258</td><td class="r k">12,6</td><td class="r">3.774</td><td class="r">2.060</td></tr></tbody>
+      <tbody><tr><td><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600</button><small></small></td><td class="r ancho">352</td><td class="r k">3,5</td><td class="r">1.057</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600</button><small>NOV</small></td><td class="r ancho">503</td><td class="r k">5,0</td><td class="r">1.510</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580</button><small>NOV</small></td><td class="r ancho">616</td><td class="r k">6,2</td><td class="r">1.849</td><td class="r">2.245</td></tr><tr><td><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600</button><small>NOV</small></td><td class="r ancho">692</td><td class="r k">6,9</td><td class="r">2.076</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600</button><small>Weatherford</small></td><td class="r ancho">818</td><td class="r k">8,2</td><td class="r">2.453</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600</button><small>NOV</small></td><td class="r ancho">1.038</td><td class="r k">10,4</td><td class="r">3.113</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450</button><small>KUDU (SLB)</small></td><td class="r ancho">1.258</td><td class="r k">12,6</td><td class="r">3.774</td><td class="r">2.060</td></tr></tbody>
     </table></div>
     <p>A 300 rpm = bpd a 100 rpm × 3; es teórico (100 % de eficiencia) y el real es de un 85 % a un 90 % de eso. Ojo: 6,29 es la conversión de m³ a barriles y siempre es la misma; el factor por rpm cambia con cada bomba.</p>
     <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención; los códigos de NOV encajan con ella, pero conviene confirmar en el catálogo del fabricante.</p>
@@ -442,8 +442,8 @@ const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDig
 const ft = (v) => fmt(v, Number.isInteger(Math.round(v * 100) / 100) ? 0 : 1).replace(/,0$/, "");
 const GUARDAR = "espaciamiento-bcp-v2";
 const EJEMPLOS = {
-  amigo: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
-  reporte: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
+  a: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
+  b: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
 };
 function dibujo(r) {
   const d = r.d, e = r.elegida, Lr = d.largoCabilla;
@@ -566,7 +566,7 @@ document.querySelectorAll("[data-esp]").forEach(init);
   if (oscuroSistema && oscuroSistema.addEventListener) oscuroSistema.addEventListener("change", pintar);
   pintar();
   var cargar = document.querySelector("[data-cargar-caso]");
-  if (cargar) cargar.addEventListener("click", function () { var b = document.querySelector('[data-ejemplo="reporte"]'); if (b) b.click(); var r = document.querySelector('[aria-label="Resultado"]'); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" }); });
+  if (cargar) cargar.addEventListener("click", function () { var b = document.querySelector('[data-ejemplo="b"]'); if (b) b.click(); var r = document.querySelector('[aria-label="Resultado"]'); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" }); });
 })();</script>
 <script>(function () {
 const U = { bpd: 6.2898, psi: 14.2233, lb: 2.20462, ft: 3.28084, kgm: 1.48816 };
@@ -584,7 +584,7 @@ function decodificarBomba(texto) {
   if (otra && n.length === 2 && n.every(isFinite)) {
     const [m3, metros] = n;
     const bpd100 = m3 * U.bpd;
-    return { tipo: "sin verificar", bpd100, bpdRpm: bpd100 / 100, m3Rpm: m3 / 100, psi: metros * U.ft * 0.433, metros };
+    return { tipo: "con letra", bpd100, bpdRpm: bpd100 / 100, m3Rpm: m3 / 100, psi: metros * U.ft * 0.433, metros };
   }
   if (n.length === 2 && n.every(isFinite)) {
     const [m3, metros] = n;
@@ -608,7 +608,7 @@ const put = (k, html) => { const el = q(k); if (el) el.innerHTML = html; };
 const TIPO = {
   "estándar": "Convención: m³ por día a 100 rpm – metros de columna de agua.",
   KUDU: "KUDU (marca de SLB): m³ por día a 100 rpm – metros de columna de agua. La K va en lugar del guion: no significa «mil» y no entra en la cuenta.",
-  "sin verificar": "Si sigue la convención m³ por día – metros. La letra del medio no está verificada: confirmar en el catálogo.",
+  "con letra": "Se lee igual: m³ por día – metros. La letra no entra en la cuenta; su significado se confirma en el catálogo.",
   Geremia: "Geremia: etapas – serie – barriles por día a 500 rpm.",
 };
 function render() {

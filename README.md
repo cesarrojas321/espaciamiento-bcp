@@ -6,7 +6,7 @@ Calculadora del espaciamiento del rotor para bombas de cavidades progresivas (BC
 
 ## Por qué existe
 
-En campo, el espaciamiento del rotor se hace a mano: con el metro, la libreta y la cuenta de cabeza en la boca del pozo. Así lo hacía yo cuando trabajaba como operador de BCP, y así se sigue haciendo hoy. Es un paso crítico: si el rotor queda bajo, golpea el niple de paro; si queda alto, trabaja fuera del estator y se pierde producción.
+En campo, el espaciamiento del rotor se hace a mano: con el metro, la libreta y la cuenta de cabeza en la boca del pozo. Así lo hacía yo cuando trabajaba en campo con BCP, y así se sigue haciendo hoy. Es un paso crítico: si el rotor queda bajo, golpea el niple de paro; si queda alto, trabaja fuera del estator y se pierde producción.
 
 Esta herramienta lleva esa cuenta a datos. Con lo que se mide en el pozo, en segundos dice qué hacer y deja el razonamiento a la vista para verificarlo y enseñarlo.
 
@@ -48,9 +48,9 @@ Esta herramienta lleva esa cuenta a datos. Con lo que se mide en el pozo, en seg
 | Niples | hueco − barra pulida adentro |
 | Repaseo | barra libre − levantado |
 
-## Validación
+## Caso de práctica
 
-Probado con un reporte real de instalación de rotor y espaciamiento (datos anonimizados): cabilla #134, cabillas 1-1/8" × 30 ft, pandeo 24", espaciamiento 48", barra libre 84". La herramienta reproduce exactamente el reporte:
+Un espaciamiento completo con números de campo: cabilla #134, cabillas 1-1/8" × 30 ft, pandeo 24", espaciamiento 48", barra libre 84". La herramienta reproduce cada paso de la cuenta:
 
 - 3 cabillas sacadas
 - 3 niples de 8 ft
