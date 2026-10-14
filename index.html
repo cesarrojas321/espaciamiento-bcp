@@ -47,59 +47,6 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .caso button:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
 .firma{margin:0;font:600 .85rem var(--e-body);color:var(--e-ink)}
 .firma span{font-weight:400;color:var(--e-muted)}
-.decod{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
-.decod h2{margin:0;font:650 1.15rem var(--e-display);color:var(--e-ink)}
-.decod h3{margin:0;font:600 .8rem var(--e-display);text-transform:uppercase;letter-spacing:.09em;color:var(--e-muted)}
-.decod p{margin:0;max-width:70ch;font:400 .92rem/1.5 var(--e-body);color:var(--e-muted)}
-.decod-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-@media (min-width:860px){.decod-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:start}}
-.decod-entrada{display:grid;gap:12px;min-width:0}
-.decod-campo{display:grid;gap:4px;min-width:0;font:600 .92rem var(--e-body);color:var(--e-ink)}
-.decod-caja{display:flex;align-items:center;border:1px solid var(--e-line);border-radius:8px;background:var(--e-field)}
-.decod-caja input{width:100%;min-width:0;border:0;background:transparent;color:var(--e-ink);font:600 1.35rem var(--e-mono);padding:9px 12px;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
-.decod-caja input::-webkit-outer-spin-button,.decod-caja input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.decod-caja i{font:500 .85rem var(--e-mono);font-style:normal;color:var(--e-muted);padding-right:12px}
-.decod-dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.decod-dos .decod-caja input{font-size:1.1rem}
-.decod-chips{display:flex;flex-wrap:wrap;gap:6px}
-.decod-chips button{font:600 .85rem var(--e-mono);padding:7px 11px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-field);color:var(--e-ink);cursor:pointer}
-.decod-chips small{font:400 .72rem var(--e-body);color:var(--e-muted)}
-.decod-chips button[aria-pressed="true"]{border-color:var(--e-accent);background:var(--e-accent);color:var(--e-on-accent)}
-.decod-chips button[aria-pressed="true"] small{color:var(--e-on-accent);opacity:.85}
-.decod button:focus-visible,.decod input:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
-.decod-salida{margin:0;display:grid;gap:8px;min-width:0}
-.decod-salida div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;padding:10px 14px;border-radius:8px;background:var(--e-field);border:1px solid var(--e-line)}
-.decod-salida dt{font:600 .88rem var(--e-body);color:var(--e-muted)}
-.decod-salida dd{margin:0;font:700 1.25rem/1.15 var(--e-mono);text-align:right;color:var(--e-ink);font-variant-numeric:tabular-nums}
-.decod-salida dd small{display:block;font:500 .78rem var(--e-mono);color:var(--e-muted)}
-.decod-salida .clave{background:var(--e-accent);border-color:var(--e-accent)}
-.decod-salida .clave dt,.decod-salida .clave dd,.decod-salida .clave dd small{color:var(--e-on-accent)}
-.decod-salida .clave dd{font-size:1.6rem}
-.decod-pasos{margin:0;padding-left:20px;display:grid;gap:4px;font:400 .9rem/1.5 var(--e-body);color:var(--e-ink)}
-.decod-pasos b{font-family:var(--e-mono);font-weight:600}
-.decod-ojo{display:grid;gap:4px;padding:10px 12px;border-radius:8px;border:1px solid var(--e-warn);background:var(--e-warn-soft);font:400 .88rem/1.5 var(--e-body);color:var(--e-ink)}
-.decod-ojo[hidden]{display:none}
-.decod-ojo b{font-weight:700}
-.decod-ojo .t{font:700 .95rem var(--e-mono)}
-.decod-casos{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
-@media (min-width:760px){.decod-casos{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.decod-casos article{display:grid;gap:6px;align-content:start;padding:12px 14px;border-radius:8px;border:1px solid var(--e-line);border-top:3px solid var(--e-warn);background:var(--e-field);min-width:0}
-.decod-casos article.bien{border-top-color:var(--e-accent)}
-.decod-casos h4{margin:0;font:650 1rem var(--e-display);color:var(--e-ink)}
-.decod-casos p{font-size:.86rem}
-.decod .decod-casos p.efecto{color:var(--e-ink);font-weight:600}
-.decod .decod-lema{font:700 .95rem var(--e-mono);color:var(--e-ink);text-align:center;padding:8px 10px;border-radius:8px;background:var(--e-accent-soft);max-width:none}
-.decod-tabla{overflow-x:auto}
-.decod-tabla table{width:100%;border-collapse:collapse;font:400 .9rem/1.35 var(--e-body);color:var(--e-ink)}
-.decod-tabla th,.decod-tabla td{padding:7px 8px;border-bottom:1px solid var(--e-line);text-align:left;vertical-align:middle}
-.decod-tabla th{font:600 .72rem var(--e-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--e-muted);vertical-align:bottom}
-.decod-tabla .r{text-align:right;font-family:var(--e-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
-.decod-tabla th.r{white-space:normal}
-.decod-tabla td.k{color:var(--e-accent);font-weight:700}
-.decod-tabla td button{display:block;white-space:nowrap;font:700 .9rem var(--e-mono);padding:0;border:0;background:none;color:var(--e-ink);cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:var(--e-line);text-underline-offset:3px}
-.decod-tabla td small{display:block;font:400 .75rem var(--e-body);color:var(--e-muted)}
-.decod-tabla tr:has(button[aria-pressed="true"]) td{background:var(--e-accent-soft)}
-@media (max-width:600px){.decod-tabla .ancho{display:none}.decod-tabla th,.decod-tabla td{padding:7px 5px}}
 
 .esp{font-family:var(--e-body);color:var(--e-ink);font-size:15px;line-height:1.45}
 .esp *{box-sizing:border-box}
@@ -166,6 +113,64 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .esp-dib .t2{fill:var(--e-muted);font-size:12px}
 .esp-nota{font-size:.8rem;color:var(--e-muted)}
 @media (prefers-reduced-motion:no-preference){.esp-r b{transition:color .2s}}
+
+.decod{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
+.decod h2{margin:0;font:650 1.15rem var(--e-display);color:var(--e-ink)}
+.decod h3{margin:0;font:600 .8rem var(--e-display);text-transform:uppercase;letter-spacing:.09em;color:var(--e-muted)}
+.decod p{margin:0;max-width:70ch;font:400 .92rem/1.5 var(--e-body);color:var(--e-muted)}
+.decod-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:860px){.decod-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:start}}
+.decod-entrada{display:grid;gap:12px;min-width:0}
+.decod-campo{display:grid;gap:4px;min-width:0;font:600 .92rem var(--e-body);color:var(--e-ink)}
+.decod-caja{display:flex;align-items:center;border:1px solid var(--e-line);border-radius:8px;background:var(--e-field)}
+.decod-caja input{width:100%;min-width:0;border:0;background:transparent;color:var(--e-ink);font:600 1.35rem var(--e-mono);padding:9px 12px;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.decod-caja input::-webkit-outer-spin-button,.decod-caja input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.decod-caja i{font:500 .85rem var(--e-mono);font-style:normal;color:var(--e-muted);padding-right:12px}
+.decod-dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.decod-dos .decod-caja input{font-size:1.1rem}
+.decod-chips{display:flex;flex-wrap:wrap;gap:6px}
+.decod-chips button{font:600 .85rem var(--e-mono);padding:7px 11px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-field);color:var(--e-ink);cursor:pointer}
+.decod-chips small{font:400 .72rem var(--e-body);color:var(--e-muted)}
+.decod-chips button[aria-pressed="true"]{border-color:var(--e-accent);background:var(--e-accent);color:var(--e-on-accent)}
+.decod-chips button[aria-pressed="true"] small{color:var(--e-on-accent);opacity:.85}
+.decod button:focus-visible,.decod input:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.decod-salida{margin:0;display:grid;gap:8px;min-width:0}
+.decod-salida div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;padding:10px 14px;border-radius:8px;background:var(--e-field);border:1px solid var(--e-line)}
+.decod-salida dt{font:600 .88rem var(--e-body);color:var(--e-muted)}
+.decod-salida dd{margin:0;font:700 1.25rem/1.15 var(--e-mono);text-align:right;color:var(--e-ink);font-variant-numeric:tabular-nums}
+.decod-salida dd small{display:block;font:500 .78rem var(--e-mono);color:var(--e-muted)}
+.decod-salida .clave{background:var(--e-accent);border-color:var(--e-accent)}
+.decod-salida .clave dt,.decod-salida .clave dd,.decod-salida .clave dd small{color:var(--e-on-accent)}
+.decod-salida .clave dd{font-size:1.6rem}
+.decod-pasos{margin:0;padding-left:20px;display:grid;gap:4px;font:400 .9rem/1.5 var(--e-body);color:var(--e-ink)}
+.decod-pasos b{font-family:var(--e-mono);font-weight:600}
+.decod-ojo{display:grid;gap:4px;padding:10px 12px;border-radius:8px;border:1px solid var(--e-warn);background:var(--e-warn-soft);font:400 .88rem/1.5 var(--e-body);color:var(--e-ink)}
+.decod-ojo[hidden]{display:none}
+.decod-ojo b{font-weight:700}
+.decod-ojo .t{font:700 .95rem var(--e-mono)}
+.decod-casos{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.decod-casos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.decod-casos article{display:grid;gap:6px;align-content:start;padding:12px 14px;border-radius:8px;border:1px solid var(--e-line);border-top:3px solid var(--e-warn);background:var(--e-field);min-width:0}
+.decod-casos article.bien{border-top-color:var(--e-accent)}
+.decod-casos h4{margin:0;font:650 1rem var(--e-display);color:var(--e-ink)}
+.decod-casos p{font-size:.86rem}
+.decod .decod-casos p.efecto{color:var(--e-ink);font-weight:600}
+.decod .decod-lema{font:700 .95rem var(--e-mono);color:var(--e-ink);text-align:center;padding:8px 10px;border-radius:8px;background:var(--e-accent-soft);max-width:none}
+.decod-tabla{overflow-x:auto}
+.decod-tabla table{width:100%;border-collapse:collapse;font:400 .9rem/1.35 var(--e-body);color:var(--e-ink)}
+.decod-tabla th,.decod-tabla td{padding:7px 8px;border-bottom:1px solid var(--e-line);text-align:left;vertical-align:middle}
+.decod-tabla th{font:600 .72rem var(--e-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--e-muted);vertical-align:bottom}
+.decod-tabla .r{text-align:right;font-family:var(--e-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.decod-tabla th.r{white-space:normal}
+.decod-tabla td.k{color:var(--e-accent);font-weight:700}
+.decod-tabla td button{display:block;white-space:nowrap;font:700 .9rem var(--e-mono);padding:0;border:0;background:none;color:var(--e-ink);cursor:pointer;text-align:left;text-decoration:underline;text-decoration-color:var(--e-line);text-underline-offset:3px}
+.decod-tabla td small{display:block;font:400 .75rem var(--e-body);color:var(--e-muted)}
+.decod-tabla tr:has(button[aria-pressed="true"]) td{background:var(--e-accent-soft)}
+@media (max-width:600px){.decod-tabla .ancho{display:none}.decod-tabla th,.decod-tabla td{padding:7px 5px}}
+.decod-explica{grid-column:1/-1;display:grid;gap:12px;min-width:0}
+.decod-ef-abajo{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.decod-ef-abajo > div{display:grid;gap:10px;align-content:start;min-width:0}
+.decod .decod-efbomba{color:var(--e-ink)}
 </style>
 </head>
 <body>
@@ -255,7 +260,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     <div class="decod-grid">
       <div class="decod-entrada">
         <label class="decod-campo">Modelo de la bomba<span class="decod-caja"><input data-db="modelo" type="text" value="98-1580" spellcheck="false" autocomplete="off" autocapitalize="characters"></span></label>
-        <div class="decod-chips"><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600 <small></small></button><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600 <small>NOV</small></button><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580 <small>NOV</small></button><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600 <small>NOV</small></button><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600 <small>NOV</small></button><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600 <small>Weatherford</small></button><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450 <small>KUDU (SLB)</small></button><button type="button" data-modelo="20-40-2100" aria-pressed="false">20-40-2100 <small>Geremia</small></button></div>
+        <div class="decod-chips"><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600</button><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600 <small>NOV</small></button><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580 <small>NOV</small></button><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600 <small>NOV</small></button><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600 <small>NOV</small></button><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600 <small>Weatherford</small></button><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450 <small>KUDU (SLB)</small></button><button type="button" data-modelo="20-40-2100" aria-pressed="false">20-40-2100 <small>Geremia</small></button></div>
         <p data-db="tipo"></p>
         <h3>Para estimar el caudal</h3>
         <div class="decod-dos">
@@ -271,17 +276,19 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div><dt>Presión máxima</dt><dd data-db="psi"></dd></div>
         <div><dt>Por vuelta del rotor</dt><dd data-db="vuelta"></dd></div>
       </dl>
+      <div class="decod-explica">
+        <h3>De dónde salen los números</h3>
+        <ol class="decod-pasos" data-db="pasos"></ol>
+        <div class="decod-ojo" data-db="error" role="note" hidden></div>
+      </div>
     </div>
-    <h3>De dónde salen los números</h3>
-    <ol class="decod-pasos" data-db="pasos"></ol>
-    <div class="decod-ojo" data-db="error" role="note" hidden></div>
     <h3>Tabla rápida (toca un código para cargarlo)</h3>
     <div class="decod-tabla"><table>
       <thead><tr><th>Código</th><th class="r ancho">bpd a 100 rpm</th><th class="r">bpd por rpm</th><th class="r">A 300 rpm (teórico)</th><th class="r">Presión máx. (psi)</th></tr></thead>
       <tbody><tr><td><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600</button><small></small></td><td class="r ancho">352</td><td class="r k">3,5</td><td class="r">1.057</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600</button><small>NOV</small></td><td class="r ancho">503</td><td class="r k">5,0</td><td class="r">1.510</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580</button><small>NOV</small></td><td class="r ancho">616</td><td class="r k">6,2</td><td class="r">1.849</td><td class="r">2.245</td></tr><tr><td><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600</button><small>NOV</small></td><td class="r ancho">692</td><td class="r k">6,9</td><td class="r">2.076</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600</button><small>Weatherford</small></td><td class="r ancho">818</td><td class="r k">8,2</td><td class="r">2.453</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600</button><small>NOV</small></td><td class="r ancho">1.038</td><td class="r k">10,4</td><td class="r">3.113</td><td class="r">2.273</td></tr><tr><td><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450</button><small>KUDU (SLB)</small></td><td class="r ancho">1.258</td><td class="r k">12,6</td><td class="r">3.774</td><td class="r">2.060</td></tr></tbody>
     </table></div>
     <p>A 300 rpm = bpd a 100 rpm × 3; es teórico (100 % de eficiencia) y el real es de un 85 % a un 90 % de eso. Ojo: 6,29 es la conversión de m³ a barriles y siempre es la misma; el factor por rpm cambia con cada bomba.</p>
-    <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención; los códigos de NOV encajan con ella, pero conviene confirmar en el catálogo del fabricante.</p>
+    <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención.</p>
     <h3>¿Por qué el real es menor que el teórico?</h3>
     <p>El estator está fijo, enroscado a la tubería; con el espaciamiento se acomoda el rotor dentro del estator. El número del código supone que el rotor trabaja en todo el estator y que no se devuelve nada de fluido: caudal real = teórico × eficiencia. Las rpm son vueltas por minuto, pero el caudal se da por día (÷ 1.440 para tenerlo por minuto).</p>
     <div class="decod-casos">
@@ -290,13 +297,21 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
       <article><h4>Rotor bajo (poco espaciamiento)</h4><p>Cuando la sarta se estira con la carga, el rotor golpea o roza el pin de paro.</p><p class="efecto">Al principio el caudal puede estar bien, pero sube el torque y se dañan rotor, pin de paro o cabillas.</p></article>
     </div>
     <p class="decod-lema">Alto, pierdes barriles · Bajo, rompes equipo</p>
-    <p>Otras cosas que bajan la eficiencia: presión cerca del límite de la bomba, desgaste por arena u horas, gas en la succión y nivel bajo (poca sumergencia). El crudo pesado de la Faja escurre menos y ayuda a la eficiencia, pero pide más torque.</p>
-    <h3>Cómo se ve en campo: eficiencia = prueba ÷ teórico</h3>
-    <div class="decod-dos">
-      <label class="decod-campo">Prueba del pozo<span class="decod-caja"><input data-db="prueba" type="number" inputmode="decimal" min="0" step="50" value="1300"><i>bpd</i></span></label>
-      <dl class="decod-salida"><div><dt>Eficiencia real</dt><dd data-db="efReal"></dd></div></dl>
+    <div class="decod-ef-abajo">
+      <div>
+        <h3>Otras cosas que bajan la eficiencia</h3>
+        <p>Presión cerca del límite de la bomba, desgaste por arena u horas, gas en la succión y nivel bajo (poca sumergencia). El crudo pesado de la Faja escurre menos y ayuda a la eficiencia, pero pide más torque.</p>
+      </div>
+      <div>
+        <h3>Cómo se ve en campo: eficiencia = prueba ÷ teórico</h3>
+        <p class="decod-efbomba" data-db="efBomba"></p>
+        <div class="decod-dos">
+          <label class="decod-campo">Prueba del pozo<span class="decod-caja"><input data-db="prueba" type="number" inputmode="decimal" min="0" step="50" value="1300"><i>bpd</i></span></label>
+          <dl class="decod-salida"><div><dt>Eficiencia real</dt><dd data-db="efReal"></dd></div></dl>
+        </div>
+        <p data-db="efTexto"></p>
+      </div>
     </div>
-    <p data-db="efTexto"></p>
   </section>
   <p class="pie">Método de campo del oriente venezolano: pandeo (subir hasta recuperar el peso) + espaciamiento; barra pulida de 40 ft con la barra libre medida sobre el cabezal (prensaestopa + cabezal + grampa + stick-up). Versión beta: verifica siempre con el repaseo y en el arranque. Los datos quedan guardados solo en este dispositivo.</p>
   <p class="firma">Desarrollado por César Rojas <span>· técnico en levantamiento artificial (BCP) · del metro y la cuenta a mano, a los datos</span></p>
@@ -599,12 +614,12 @@ function decodificarBomba(texto) {
   return null;
 }
 
-const raiz = document.querySelector("[data-decod]");
-if (!raiz) return;
+if (!document.querySelector('[data-db="modelo"]')) return;
 const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDigits: d, maximumFractionDigits: d });
 const num = (v, max = 2) => Number(v).toLocaleString("es-VE", { maximumFractionDigits: max });
-const q = (k) => raiz.querySelector('[data-db="' + k + '"]');
+const q = (k) => document.querySelector('[data-db="' + k + '"]');
 const put = (k, html) => { const el = q(k); if (el) el.innerHTML = html; };
+const val = (k, def) => { const el = q(k); return el ? Math.max(0, parseFloat(el.value) || 0) : def; };
 const TIPO = {
   "estándar": "Convención: m³ por día a 100 rpm – metros de columna de agua.",
   KUDU: "KUDU (marca de SLB): m³ por día a 100 rpm – metros de columna de agua. La K va en lugar del guion: no significa «mil» y no entra en la cuenta.",
@@ -613,27 +628,28 @@ const TIPO = {
 };
 function render() {
   const texto = q("modelo").value.trim().toUpperCase();
-  raiz.querySelectorAll("[data-modelo]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modelo === texto)));
+  document.querySelectorAll("[data-modelo]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modelo === texto)));
   const d = decodificarBomba(texto);
+  const error = q("error");
   if (!d) {
     put("tipo", "Formato no reconocido. Ejemplos: 98-1580, 200K1450 o 20-40-2100.");
     ["qrpm", "q100", "teorico", "vuelta", "psi", "caudal", "efReal"].forEach((k) => put(k, "—"));
-    put("efTexto", "");
-    put("pasos", "");
-    q("error").hidden = true;
+    ["efTexto", "efBomba", "pasos"].forEach((k) => put(k, ""));
+    if (error) error.hidden = true;
     return;
   }
-  const rpm = Math.max(0, parseFloat(q("rpm").value) || 0), ef = Math.max(0, parseFloat(q("efic").value) || 0);
+  const rpm = val("rpm", 300), ef = val("efic", 85);
   const m3 = d.m3Rpm * 100, cm3 = (d.m3Rpm * 1e6) / 1440, teorico = d.bpdRpm * rpm, caudal = (teorico * ef) / 100;
   put("tipo", TIPO[d.tipo]);
   put("qrpm", fmt(d.bpdRpm, 2) + " bpd<small>" + num(d.m3Rpm, 3) + " m³/d</small>");
   put("q100", fmt(d.bpd100) + " bpd<small>" + num(m3, 1) + " m³/d</small>");
   put("vuelta", fmt(cm3) + " cm³<small>" + num(cm3 / 1000, 2) + " litros</small>");
   put("psi", fmt(d.psi) + " psi<small>" + (d.metros ? fmt(d.metros) + " m de agua" : d.etapas + " etapas × 100 psi") + "</small>");
-  q("tTeorico").textContent = "Teórico a " + fmt(rpm) + " rpm";
+  const tT = q("tTeorico"); if (tT) tT.textContent = "Teórico a " + fmt(rpm) + " rpm";
   put("teorico", fmt(teorico) + " bpd<small>al 100 % de eficiencia</small>");
   put("caudal", fmt(caudal) + " bpd<small>a " + fmt(rpm) + " rpm y " + fmt(ef) + " %</small>");
-  const prueba = Math.max(0, parseFloat(q("prueba").value) || 0), efReal = teorico > 0 ? (prueba / teorico) * 100 : 0;
+  const prueba = val("prueba", 0), efReal = teorico > 0 ? (prueba / teorico) * 100 : 0;
+  put("efBomba", "Bomba <b>" + texto + "</b> a " + fmt(rpm) + " rpm → <b>" + fmt(teorico) + " bpd</b> teóricos.");
   put("efReal", teorico > 0 ? fmt(efReal) + " %<small>" + fmt(prueba) + " ÷ " + fmt(teorico) + "</small>" : "—");
   put("efTexto", teorico <= 0 ? "" : efReal > 100 ? "Más de 100 %: revisa la prueba o las rpm." :
     "Con " + fmt(rpm) + " rpm, esta bomba da " + fmt(teorico) + " bpd teóricos y la prueba da " + fmt(prueba) + ": eficiencia de " + fmt(efReal) + " %. Compárala con la del arranque y cruza con el nivel. <b>Nivel alto:</b> el pozo tiene fluido y la bomba no lo saca; sospecha de la bomba (desgaste, escurrimiento o rotor alto). <b>Nivel bajo:</b> la bomba está bien; el pozo no aporta más.");
@@ -657,7 +673,7 @@ function render() {
   put("pasos", pasos.map((p) => "<li>" + p + "</li>").join(""));
   // Error común: multiplicar el número del código por el factor por rpm, que ya lo trae adentro.
   const f1 = Math.round(d.bpdRpm * 10) / 10, n = num(m3, 1), fx = fmt(f1, 1);
-  q("error").hidden = d.tipo === "Geremia";
+  if (error) error.hidden = d.tipo === "Geremia";
   if (d.tipo !== "Geremia") put("error",
     '<span class="t">Error común: ' + n + " × " + fx + " ✗</span>" +
     "<span>El " + fx + " ya trae el " + n + " adentro (" + n + " × 6,29 ÷ 100). Si los multiplicas, usas el " + n + " dos veces.</span>" +
@@ -665,8 +681,8 @@ function render() {
     (Math.abs(m3 / 100 - 1) < 0.15 ? " Con esta bomba casi no se nota porque " + n + " está cerca de 100; con la 200K1450 da el doble." : "") + "</span>" +
     "<span><b>Con el " + fx + " en la mano, el " + n + " ya no se usa.</b> Cada paso usa solo el número anterior.</span>");
 }
-["modelo", "rpm", "efic", "prueba"].forEach((k) => q(k).addEventListener("input", render));
-raiz.querySelectorAll("[data-modelo]").forEach((b) => b.addEventListener("click", () => { q("modelo").value = b.dataset.modelo; render(); }));
+["modelo", "rpm", "efic", "prueba"].forEach((k) => { const el = q(k); if (el) el.addEventListener("input", render); });
+document.querySelectorAll("[data-modelo]").forEach((b) => b.addEventListener("click", () => { q("modelo").value = b.dataset.modelo; render(); }));
 render();
 })();</script>
 </body>
