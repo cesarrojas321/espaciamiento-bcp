@@ -45,6 +45,15 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 @media (max-width:600px){.caso thead{display:none}.caso tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--e-line)}.caso td{border:0;padding:0}.caso td:first-child{grid-column:1/-1;font-weight:600}.caso td.n{white-space:normal;color:var(--e-muted);min-width:0;overflow-wrap:anywhere}.caso td.ok{text-align:right}}
 .caso button{justify-self:start;font:600 .9rem var(--e-body);padding:10px 16px;border-radius:999px;border:1px solid var(--e-accent);background:var(--e-accent);color:var(--e-on-accent);cursor:pointer}
 .caso button:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.indice{display:flex;flex-wrap:wrap;gap:8px}
+.indice a{font:600 .85rem var(--e-body);padding:8px 14px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-card);color:var(--e-ink);text-decoration:none}
+.indice a:hover{border-color:var(--e-accent)}
+.indice a:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+[id]{scroll-margin-top:12px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+.marcas-lista{margin:0;padding-left:20px;font:400 .92rem/1.5 var(--e-body);color:var(--e-ink)}
+.marcas-lista li{margin-bottom:6px;break-inside:avoid}
+@media (min-width:860px){.marcas-lista{columns:2;column-gap:32px}}
 .firma{margin:0;font:600 .85rem var(--e-body);color:var(--e-ink)}
 .firma span{font-weight:400;color:var(--e-muted)}
 
@@ -112,6 +121,8 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .esp-dib text{font-family:var(--e-mono);font-size:13px;fill:var(--e-ink)}
 .esp-dib .t2{fill:var(--e-muted);font-size:12px}
 .esp-nota{font-size:.8rem;color:var(--e-muted)}
+.esp h3.esp-paso{color:var(--e-accent);border-top:1px solid var(--e-line);padding-top:12px}
+.esp-ej > span{align-self:center;font-size:.85rem;color:var(--e-muted)}
 @media (prefers-reduced-motion:no-preference){.esp-r b{transition:color .2s}}
 
 .decod{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
@@ -180,48 +191,51 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     <h1>La cuenta de campo</h1>
     <p class="s">Con qué cabilla tocaste el pin de paro y cuántos pies sobran afuera: la página te dice qué cabillas sacar, con qué niples completar, cuánta barra libre queda y qué medir en el repaseo.</p>
   </header>
-  <div class="esp" data-esp data-recordar data-pre="esp">
+  <nav class="indice" aria-label="Contenido"><a href="#marcas">Cómo se hace</a><a href="#calculadora">Calculadora</a><a href="#caso">Caso de práctica</a><a href="#bomba">La bomba</a><a href="#caudal">Caudal real</a></nav>
+  <section class="caso" id="marcas" aria-label="Cómo se hace">
+    <h2>Cómo se hace: las marcas en boca de pozo</h2>
+    <ol class="marcas-lista">
+          <li><b>Tocar.</b> Baja el rotor hasta que toque el pin de paro (el indicador pierde peso). Anota con qué cabilla tocaste y cuántos pies sobran sobre la brida. <b>Marca 1</b> en la cabilla, al ras de la brida, con marcador de tubería.</li>
+          <li><b>Pandeo.</b> Levanta despacio hasta recuperar todo el peso de la sarta. <b>Marca 2</b> al ras de la brida. Entre la marca 1 y la 2 está el pandeo (unos 2 ft).</li>
+          <li><b>Rectificar.</b> Vuelve a bajar hasta tocar y confirma que cae en la marca 1; levanta otra vez al peso y confirma la marca 2. Si no coinciden, repite.</li>
+          <li><b>Espaciamiento.</b> Se suma al pandeo en la cuenta. Regla rápida: 1 ft por cada 1000 ft de profundidad (a 3.000 ft, 3 ft); las otras reglas están en el paso 2 de la calculadora.</li>
+          <li><b>La cuenta, con la cabilla en los burros.</b> Cuántas cabillas sacar y con qué niples completar para que entre la barra pulida: es lo que calcula esta página.</li>
+          <li><b>Barra pulida y repaseo.</b> Instala niples y barra pulida, y baja hasta tocar: sobre la brida debe quedar la barra libre menos lo levantado. Ej.: 7 − 5 = 2 ft = 24".</li>
+          <li><b>Posición de trabajo.</b> Levanta lo del pandeo y el espaciamiento, arma prensaestopa, cabezal y grampa, y deja el stick-up sobre la grampa.</li>
+        </ol>
+  </section>
+  <div id="calculadora"><div class="esp" data-esp data-recordar data-pre="esp">
   <div class="esp-grid">
     <section class="esp-panel" aria-label="Datos del pozo">
       <h2>Datos del pozo</h2>
+      <div class="esp-ej"><span>Cargar un ejemplo:</span><button type="button" data-ejemplo="a">A: #120, 15 ft</button><button type="button" data-ejemplo="b">B: #134, 27 ft</button><button type="button" data-ejemplo="c">C: 25 ft, #120, 15 ft ya levantado</button></div>
+      <h3 class="esp-paso">1 · Al tocar el pin de paro</h3>
       <div class="esp-seg" role="group" aria-label="Largo de las cabillas"><button type="button" data-largo="25" aria-pressed="false">Cabillas de 25 ft</button><button type="button" data-largo="30" aria-pressed="true">Cabillas de 30 ft</button></div>
       <div class="esp-campos">
         <div class="esp-campo"><label for="esp-cabilla">Cabilla con la que tocaste</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabilla" aria-label="Restar 1">−</button><input id="esp-cabilla" data-k="cabilla" type="number" inputmode="decimal" step="1" min="1" value="134"><span class="u"><span class="pre">#</span></span><button type="button" data-delta="1" data-para="cabilla" aria-label="Sumar 1">+</button></div></div>
         <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="27"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida.</small></div>
         <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">¿Cuándo mediste lo que sobra?</span><div class="esp-seg" role="group" aria-label="Cuándo mediste lo que sobra"><button type="button" data-medido="tocar" aria-pressed="true">Al tocar el pin</button><button type="button" data-medido="levantado" aria-pressed="false">Ya levantado</button></div><small>Ya levantado: después de recuperar el peso (pandeo) y levantar el espaciamiento. Así lo cuenta el método de las marcas: lo que queda adentro + la cabilla que sacas − la barra adentro.</small></div>
-        <div class="esp-dos">
-          <div class="esp-campo"><label for="esp-pandeo">Pandeo</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="pandeo" aria-label="Restar 0.5">−</button><input id="esp-pandeo" data-k="pandeo" type="number" inputmode="decimal" step="0.5" min="0" value="2"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="pandeo" aria-label="Sumar 0.5">+</button></div></div>
-          <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="4"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
-        </div>
-        <small class="esp-nota">Pandeo: lo que subes hasta recuperar el peso. Espaciamiento: lo que levantas después.</small>
+        <div class="esp-campo"><label for="esp-pandeo">Pandeo</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="pandeo" aria-label="Restar 0.5">−</button><input id="esp-pandeo" data-k="pandeo" type="number" inputmode="decimal" step="0.5" min="0" value="2"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="pandeo" aria-label="Sumar 0.5">+</button></div><small>Lo que subes hasta recuperar el peso de la sarta (de la marca 1 a la marca 2).</small></div>
       </div>
-      <details class="esp-marcas"><summary>Paso a paso en boca de pozo: las marcas</summary><div>
-        <ol class="esp-pasos">
-          <li><b>Tocar.</b> Baja el rotor hasta que toque el pin de paro (el indicador pierde peso). Anota con qué cabilla tocaste y cuántos pies sobran sobre la brida. <b>Marca 1</b> en la cabilla, al ras de la brida, con marcador de tubería.</li>
-          <li><b>Pandeo.</b> Levanta despacio hasta recuperar todo el peso de la sarta. <b>Marca 2</b> al ras de la brida. Entre la marca 1 y la 2 está el pandeo (unos 2 ft).</li>
-          <li><b>Rectificar.</b> Vuelve a bajar hasta tocar y confirma que cae en la marca 1; levanta otra vez al peso y confirma la marca 2. Si no coinciden, repite.</li>
-          <li><b>Espaciamiento.</b> Se suma al pandeo en la cuenta. Regla rápida: 1 ft por cada 1000 ft de profundidad (a 3.000 ft, 3 ft); o la regla de tu cabilla, abajo en «¿Cuánto espaciamiento levantar?».</li>
-          <li><b>La cuenta, con la cabilla en los burros.</b> Cuántas cabillas sacar y con qué niples completar para que entre la barra pulida: es lo que calcula esta página.</li>
-          <li><b>Barra pulida y repaseo.</b> Instala niples y barra pulida, y baja hasta tocar: sobre la brida debe quedar la barra libre menos lo levantado. Ej.: 7 − 5 = 2 ft = 24".</li>
-          <li><b>Posición de trabajo.</b> Levanta lo del pandeo y el espaciamiento, arma prensaestopa, cabezal y grampa, y deja el stick-up sobre la grampa.</li>
-        </ol>
-      </div></details>
-      <details class="esp-ayuda"><summary>¿Cuánto espaciamiento levantar?</summary><div>
-        <p class="esp-nota">Espaciamiento = estiramiento que va a tener la sarta trabajando + holgura del niple de paro.</p>
-        <div class="esp-total"><span>Profundidad del pin de paro</span><b data-o="ayProf">—</b></div>
+      <h3 class="esp-paso">2 · Profundidad y espaciamiento</h3>
+      <div class="esp-campo"><label for="esp-profManual">Profundidad del pin de paro</label><div class="esp-step"><button type="button" data-delta="-50" data-para="profManual" aria-label="Restar 50">−</button><input id="esp-profManual" data-k="profManual" type="number" inputmode="decimal" step="50" min="0" value="0"><span class="u">ft</span><button type="button" data-delta="50" data-para="profManual" aria-label="Sumar 50">+</button></div></div>
+        <div class="esp-fijo"><span data-o="profAuto"></span><button type="button" data-prof-auto>Calcular con las cabillas</button></div>
         <small class="esp-nota" data-o="ayProfTxt"></small>
         <div class="esp-r"><span>Regla rápida: 1 pie por cada 1000 pies</span><b data-o="ayPie">—</b><small data-o="ayPieTxt"></small></div>
         <div class="esp-r"><span>Constante de campo: profundidad × 48 ÷ 4065</span><b data-o="ayCte">—</b><small data-o="ayCteTxt"></small></div>
         <div class="esp-campo"><label for="esp-diam">Diámetro de cabilla</label><select id="esp-diam" data-ay="diam"><option value="1">1"</option><option value="1-1/8" selected>1-1/8"</option><option value="1-1/4">1-1/4"</option><option value="1-1/2">1-1/2"</option></select></div>
-        <div class="esp-dos">
-          <div class="esp-campo"><label for="esp-ayF">Carga por presión</label><div class="esp-step"><button type="button" data-delta="-500" data-para="ayF" aria-label="Restar 500">−</button><input id="esp-ayF" data-k="ayF" type="number" inputmode="decimal" step="500" min="0" value="6000"><span class="u">lb</span><button type="button" data-delta="500" data-para="ayF" aria-label="Sumar 500">+</button></div></div>
-          <div class="esp-campo"><label for="esp-ayH">Holgura del niple</label><div class="esp-step"><button type="button" data-delta="-1" data-para="ayH" aria-label="Restar 1">−</button><input id="esp-ayH" data-k="ayH" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="ayH" aria-label="Sumar 1">+</button></div></div>
-        </div>
-        <div class="esp-r"><span>Con la ley de Hooke</span><b data-o="ayHooke">—</b><small data-o="ayHookeTxt"></small></div>
         <div class="esp-r"><span>Regla de campo según la cabilla</span><b data-o="ayRegla">—</b><small data-o="ayReglaTxt"></small></div>
+        <details class="esp-ayuda"><summary>Avanzado: ley de Hooke</summary><div>
+          <p class="esp-nota">Espaciamiento = estiramiento que va a tener la sarta trabajando + holgura del niple de paro.</p>
+          <div class="esp-dos">
+            <div class="esp-campo"><label for="esp-ayF">Carga por presión</label><div class="esp-step"><button type="button" data-delta="-500" data-para="ayF" aria-label="Restar 500">−</button><input id="esp-ayF" data-k="ayF" type="number" inputmode="decimal" step="500" min="0" value="6000"><span class="u">lb</span><button type="button" data-delta="500" data-para="ayF" aria-label="Sumar 500">+</button></div></div>
+            <div class="esp-campo"><label for="esp-ayH">Holgura del niple</label><div class="esp-step"><button type="button" data-delta="-1" data-para="ayH" aria-label="Restar 1">−</button><input id="esp-ayH" data-k="ayH" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="ayH" aria-label="Sumar 1">+</button></div></div>
+          </div>
+          <div class="esp-r"><span>Con la ley de Hooke</span><b data-o="ayHooke">—</b><small data-o="ayHookeTxt"></small></div>
+        </div></details>
         <div class="esp-ej"><button type="button" data-usar="pie">Usar 1 ft por 1000 ft</button><button type="button" data-usar="cte">Usar la constante</button><button type="button" data-usar="regla">Usar la regla de la cabilla</button><button type="button" data-usar="hooke">Usar Hooke</button></div>
-      </div></details>
-      <h3>Medidas del cabezal</h3>
+      <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="4"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
+      <h3 class="esp-paso">3 · Medidas del cabezal</h3>
       <small class="esp-nota">Valores de ejemplo: reemplázalos por lo que mides con la cinta en tu pozo.</small><div class="esp-dos"><div class="esp-campo"><label for="esp-prensa">Prensaestopa (stuffing box)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="prensa" aria-label="Restar 1">−</button><input id="esp-prensa" data-k="prensa" type="number" inputmode="decimal" step="1" min="0" value="24"><span class="u">pulg</span><button type="button" data-delta="1" data-para="prensa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-cabezal">Cabezal</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabezal" aria-label="Restar 1">−</button><input id="esp-cabezal" data-k="cabezal" type="number" inputmode="decimal" step="1" min="0" value="42"><span class="u">pulg</span><button type="button" data-delta="1" data-para="cabezal" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-grampa">Grampa</label><div class="esp-step"><button type="button" data-delta="-1" data-para="grampa" aria-label="Restar 1">−</button><input id="esp-grampa" data-k="grampa" type="number" inputmode="decimal" step="1" min="0" value="6"><span class="u">pulg</span><button type="button" data-delta="1" data-para="grampa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-stick">Stick-up (sobre la grampa)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="stick" aria-label="Restar 1">−</button><input id="esp-stick" data-k="stick" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="stick" aria-label="Sumar 1">+</button></div></div></div>
       <div class="esp-total"><span>Barra libre sobre la brida</span><b data-o="libreMedida">84" · 7 ft</b></div>
       <div class="esp-fijo"><span>¿No mediste?</span><button type="button" data-fijo="6">6 ft</button><button type="button" data-fijo="6.5">6,5 ft</button><button type="button" data-fijo="7">7 ft</button><button type="button" data-fijo="0" aria-pressed="true">Usar lo medido</button></div>
@@ -230,7 +244,6 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div class="esp-campo"><label for="esp-rotorNiple">Rotor + niple de maniobra (+ cuello)</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="rotorNiple" aria-label="Restar 0.5">−</button><input id="esp-rotorNiple" data-k="rotorNiple" type="number" inputmode="decimal" step="0.5" min="0" value="36.46"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="rotorNiple" aria-label="Sumar 0.5">+</button></div><small>Para calcular la profundidad del rotor. Ej.: rotor 32,46 ft + niple 4 ft.</small></div>
         <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">Niples de cabilla que tienes</span><div class="esp-chips"><button type="button" data-niple="1" aria-pressed="false">1 ft</button><button type="button" data-niple="2" aria-pressed="true">2 ft</button><button type="button" data-niple="3" aria-pressed="false">3 ft</button><button type="button" data-niple="4" aria-pressed="true">4 ft</button><button type="button" data-niple="6" aria-pressed="true">6 ft</button><button type="button" data-niple="8" aria-pressed="true">8 ft</button><button type="button" data-niple="10" aria-pressed="true">10 ft</button><button type="button" data-niple="12" aria-pressed="false">12 ft</button></div><small>Se combinan hasta 3 niples.</small></div>
       </div></details>
-      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button><button type="button" data-ejemplo="c">Ejemplo C: 25 ft, #120, 15 ft ya levantado</button></div>
     </section>
     <section class="esp-panel" aria-label="Resultado" aria-live="polite">
       <h2>Qué hacer</h2>
@@ -249,8 +262,8 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
       <p class="esp-nota" data-o="prof"></p>
     </section>
   </div>
-</div>
-  <section class="caso" aria-label="Caso de práctica">
+</div></div>
+  <section class="caso" id="caso" aria-label="Caso de práctica">
     <h2>Caso de práctica: un espaciamiento completo</h2>
     <p>Un caso de práctica con números de campo. La calculadora reproduce cada paso de la cuenta.</p>
     <div class="caso-tabla"><table>
@@ -270,7 +283,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     </table></div>
     <button type="button" data-cargar-caso>Cargar este caso en la calculadora</button>
   </section>
-  <section class="decod" data-decod aria-label="Decodificar la bomba">
+  <section class="decod" id="bomba" data-decod aria-label="Decodificar la bomba">
     <h2>Decodificar la bomba</h2>
     <p>El código del estator dice cuánto mueve la bomba y cuánta presión aguanta. Escribe el modelo o toca uno.</p>
     <div class="decod-grid">
@@ -305,6 +318,9 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     </table></div>
     <p>A 300 rpm = bpd a 100 rpm × 3; es teórico (100 % de eficiencia) y el real es de un 85 % a un 90 % de eso. Ojo: 6,29 es la conversión de m³ a barriles y siempre es la misma; el factor por rpm cambia con cada bomba.</p>
     <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención.</p>
+  </section>
+  <section class="decod" id="caudal" data-decod aria-label="Caudal real">
+    <h2>Caudal real: espaciamiento y eficiencia</h2>
     <h3>¿Por qué el real es menor que el teórico?</h3>
     <p>El estator está fijo, enroscado a la tubería; con el espaciamiento se acomoda el rotor dentro del estator. El número del código supone que el rotor trabaja en todo el estator y que no se devuelve nada de fluido: caudal real = teórico × eficiencia. Las rpm son vueltas por minuto, pero el caudal se da por día (÷ 1.440 para tenerlo por minuto).</p>
     <div class="decod-casos">
@@ -350,6 +366,7 @@ const DEF = {
   stick: 12,
   barraLibreFija: 0,
   rotorNiple: 36.46,
+  profManual: 0, // profundidad del pin de paro escrita a mano; 0 = calcularla con las cabillas
   niples: [2, 4, 6, 8, 10],
   maxPiezas: 3,
 };
@@ -431,13 +448,17 @@ function cuentaDeCampo(entrada = {}) {
   else if (elegida.stick < 0.25 && d.barraLibreFija <= 0) avisos.push("Queda muy poca barra sobre la grampa (menos de 3\").");
   if (elegida.repaseo < 0) avisos.push("El repaseo da negativo: lo levantado es más que la barra libre. Revisa los datos.");
 
+  const profCabillas = d.cabilla * Lr - afueraAlTocar + d.rotorNiple;
+  const prof = d.profManual > 0 ? d.profManual : profCabillas;
+  if (d.profManual > 0 && Math.abs(d.profManual - profCabillas) > Lr) avisos.push(`Con la #${d.cabilla} de ${Lr} ft la sarta llega a unos ${Math.round(profCabillas).toLocaleString("es-VE")} ft y escribiste ${Math.round(d.profManual).toLocaleString("es-VE")} ft: revisa la cabilla con la que tocaste o si hay niples o cabillas de otro largo.`);
   const sacar = Array.from({ length: k }, (_, i) => d.cabilla - i);
   const queda = d.cabilla - k;
   return {
     ok: true, d, avisos, levantado, afueraAlTocar, barraLibre, pila, adentro, adentroAlTocar, h0, k, hueco, niplesNecesarios,
     exacta: comb.exacta, elegida, alternativa, sacar, queda,
-    profundidad: d.cabilla * Lr - afueraAlTocar + d.rotorNiple,
-    fondoFinal: d.cabilla * Lr - afueraAlTocar + d.rotorNiple - levantado,
+    prof, profCabillas,
+    profundidad: prof,
+    fondoFinal: prof - levantado,
   };
 }
 
@@ -524,15 +545,19 @@ function init(root) {
     qa("[data-niple]").forEach((b) => b.setAttribute("aria-pressed", String(st.niples.includes(+b.dataset.niple))));
   };
   const out = (k, v) => { const el = q('[data-o="' + k + '"]'); if (el) el.textContent = v; };
+  const afTocar = () => (st.medido === "levantado" ? st.afuera - st.pandeo - st.espacio : st.afuera);
+  const profCab = () => Math.max(0, st.cabilla * st.largoCabilla - afTocar() + st.rotorNiple);
+  const profUsada = () => (st.profManual > 0 ? st.profManual : profCab());
   function ayuda() {
     const sel = q('[data-ay="diam"]'); if (!sel) return {};
-    const afT = st.medido === "levantado" ? st.afuera - st.pandeo - st.espacio : st.afuera;
-    const pies = Math.max(0, st.cabilla * st.largoCabilla - afT);
+    const pies = profUsada();
+    const pm = q('[data-k="profManual"]');
+    if (pm && !st.profManual && document.activeElement !== pm) pm.value = Math.round(profCab());
+    out("profAuto", st.profManual > 0 ? "Escrita a mano. Con las cabillas: " + fmt(profCab()) + " ft" : "Calculada con las cabillas");
     const F = parseFloat(q('[data-k="ayF"]').value) || 0, hol = parseFloat(q('[data-k="ayH"]').value) || 0;
     const r = sarta(sel.value, pies, 1.0, F);
     const hooke = (r.porCarga + hol) / 12, regla = r.regla / 12, pie = pies / 1000;
-    out("ayProf", fmt(pies) + " ft");
-    out("ayProfTxt", "Cabilla #" + st.cabilla + " × " + ft(st.largoCabilla) + " ft − " + ft(afT) + " ft que sobraban al tocar = " + fmt(pies) + " ft (solo cabillas; si hay niples en la sarta, súmalos).");
+    out("ayProfTxt", st.profManual > 0 ? "Las reglas usan la profundidad que escribiste. Para volver a la de las cabillas, toca «Calcular con las cabillas»." : "#" + st.cabilla + " × " + ft(st.largoCabilla) + " ft − " + ft(afTocar()) + " ft que sobraban al tocar + " + ft(st.rotorNiple) + " ft de rotor y niple = " + fmt(profCab()) + " ft. Si tu pozo tiene otra profundidad, escríbela.");
     out("ayPie", ft(pie) + " ft"); out("ayPieTxt", "1 ft × " + fmt(pies / 1000, 2) + " miles de pies. Equivale a 12 pulgadas por cada 1000 ft: la regla de la cabilla de 1 pulgada.");
     out("ayHooke", ft(hooke) + " ft"); out("ayHookeTxt", fmt(r.porCarga, 1) + '" de estiramiento con ' + fmt(F) + " lb a " + fmt(pies) + " ft + " + fmt(hol) + '" de holgura');
     out("ayRegla", ft(regla) + " ft"); out("ayReglaTxt", CABILLAS[sel.value].regla + '" por cada 1000 ft × ' + fmt(pies / 1000, 2) + " (conservadora, supone unas 25.000 lb)");
@@ -592,7 +617,8 @@ function init(root) {
     const n = +b.dataset.niple; st.niples = st.niples.includes(n) ? st.niples.filter((x) => x !== n) : [...st.niples, n].sort((a, c) => a - c); sincronizar(); render();
   }));
   qa("[data-medido]").forEach((b) => b.addEventListener("click", () => { st.medido = b.dataset.medido; sincronizar(); render(); }));
-  qa("[data-ejemplo]").forEach((b) => b.addEventListener("click", () => { st = { ...st, ...EJEMPLOS[b.dataset.ejemplo], barraLibreFija: 0, prensa: 24, cabezal: 42, grampa: 6, stick: 12 }; sincronizar(); render(); }));
+  qa("[data-prof-auto]").forEach((b) => b.addEventListener("click", () => { st.profManual = 0; sincronizar(); render(); }));
+  qa("[data-ejemplo]").forEach((b) => b.addEventListener("click", () => { st = { ...st, ...EJEMPLOS[b.dataset.ejemplo], profManual: 0, barraLibreFija: 0, prensa: 24, cabezal: 42, grampa: 6, stick: 12 }; sincronizar(); render(); }));
   qa('[data-ay], [data-k="ayF"], [data-k="ayH"]').forEach((el) => el.addEventListener("input", ayuda));
   qa("[data-usar]").forEach((b) => b.addEventListener("click", () => { const a = ayuda(); st.espacio = a[b.dataset.usar] || st.espacio; sincronizar(); render(); }));
   sincronizar(); render();
