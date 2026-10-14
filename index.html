@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Espaciamiento BCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{
+  --e-bg:#eef1f5;--e-card:#ffffff;--e-field:#f6f8fb;--e-ink:#14213a;--e-muted:#5b6578;--e-line:#cfd6e2;
+  --e-accent:#1f4fd1;--e-accent-soft:#e3eafb;--e-on-accent:#ffffff;
+  --e-warn:#c06a12;--e-warn-soft:#fdf1e3;--e-rod:#c3cad6;--e-pony:#e7b45c;
+  --e-display:"IBM Plex Sans Condensed","Arial Narrow","Segoe UI",sans-serif;
+  --e-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --e-mono:"IBM Plex Mono",Consolas,"SF Mono",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --e-bg:#0e141f;--e-card:#151d2b;--e-field:#1b2535;--e-ink:#e6ebf4;--e-muted:#9aa5b8;--e-line:#2b3850;
+  --e-accent:#6f97ff;--e-accent-soft:#1c2a4a;--e-on-accent:#0b1222;
+  --e-warn:#f0a35a;--e-warn-soft:#2c2114;--e-rod:#4a566c;--e-pony:#b88a3c;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --e-bg:#0e141f;--e-card:#151d2b;--e-field:#1b2535;--e-ink:#e6ebf4;--e-muted:#9aa5b8;--e-line:#2b3850;
+  --e-accent:#6f97ff;--e-accent-soft:#1c2a4a;--e-on-accent:#0b1222;
+  --e-warn:#f0a35a;--e-warn-soft:#2c2114;--e-rod:#4a566c;--e-pony:#b88a3c;color-scheme:dark}
+body{background:var(--e-bg);color:var(--e-ink);margin:0}
+.pagina{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:20px 40px;display:grid;gap:16px}
+.cabeza{display:grid;gap:4px}
+.cabeza p.k{margin:0;font:600 .72rem var(--e-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--e-accent)}
+.cabeza h1{margin:0;font:700 clamp(1.7rem,5vw,2.4rem)/1.05 var(--e-display);color:var(--e-ink);text-wrap:balance}
+.cabeza p.s{margin:0;max-width:62ch;color:var(--e-muted);font:400 .98rem/1.5 var(--e-body)}
+.pie{font:400 .8rem/1.5 var(--e-body);color:var(--e-muted);max-width:75ch}
+.cabeza-fila{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tema{display:inline-flex;align-items:center;gap:8px;font:600 .85rem var(--e-body);padding:8px 14px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-card);color:var(--e-ink);cursor:pointer}
+.tema svg{width:16px;height:16px;flex:none}
+.tema:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.caso{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:12px;min-width:0}
+.caso h2{margin:0;font:650 1.15rem var(--e-display);color:var(--e-ink)}
+.caso p{margin:0;max-width:70ch;font:400 .92rem/1.5 var(--e-body);color:var(--e-muted)}
+.caso-tabla{overflow-x:auto}
+.caso table{width:100%;border-collapse:collapse;font:400 .9rem/1.4 var(--e-body);color:var(--e-ink)}
+.caso th,.caso td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--e-line);vertical-align:top}
+.caso th{font:600 .75rem var(--e-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--e-muted)}
+.caso td.n{font-family:var(--e-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.caso td.ok{color:var(--e-accent);font-weight:600;white-space:nowrap}
+@media (max-width:600px){.caso thead{display:none}.caso tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--e-line)}.caso td{border:0;padding:0}.caso td:first-child{grid-column:1/-1;font-weight:600}.caso td.n{white-space:normal;color:var(--e-muted);min-width:0;overflow-wrap:anywhere}.caso td.ok{text-align:right}}
+.caso button{justify-self:start;font:600 .9rem var(--e-body);padding:10px 16px;border-radius:999px;border:1px solid var(--e-accent);background:var(--e-accent);color:var(--e-on-accent);cursor:pointer}
+.caso button:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.firma{margin:0;font:600 .85rem var(--e-body);color:var(--e-ink)}
+.firma span{font-weight:400;color:var(--e-muted)}
+
+.esp{font-family:var(--e-body);color:var(--e-ink);font-size:15px;line-height:1.45}
+.esp *{box-sizing:border-box}
+.esp h2,.esp h3{font-family:var(--e-display);color:var(--e-ink);margin:0;letter-spacing:.01em;text-wrap:balance}
+.esp h2{font-size:1.25rem;font-weight:650}
+.esp h3{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--e-muted)}
+.esp-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:860px){.esp-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:start}}
+.esp-panel{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
+.esp-seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--e-line);border-radius:8px;overflow:hidden}
+.esp-seg button{font:600 .9rem var(--e-body);padding:10px 8px;border:0;background:transparent;color:var(--e-muted);cursor:pointer}
+.esp-seg button[aria-pressed="true"]{background:var(--e-accent);color:var(--e-on-accent)}
+.esp-campos{display:grid;gap:12px}
+.esp-campo{display:grid;gap:4px;min-width:0}
+.esp-campo label{font-weight:600;font-size:.92rem}
+.esp-campo small{color:var(--e-muted);font-size:.8rem}
+.esp-step{display:grid;grid-template-columns:48px minmax(0,1fr) auto 48px;align-items:center;border:1px solid var(--e-line);border-radius:8px;background:var(--e-field);overflow:hidden}
+.esp-step button{height:48px;border:0;background:transparent;color:var(--e-accent);font:600 1.5rem var(--e-mono);cursor:pointer}
+.esp-step button:active{background:var(--e-accent-soft)}
+.esp-step input{width:100%;min-width:0;border:0;background:transparent;color:var(--e-ink);font:600 1.35rem var(--e-mono);text-align:right;padding:8px 4px;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.esp-step input::-webkit-outer-spin-button,.esp-step input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.esp-step .u{font:500 .85rem var(--e-mono);color:var(--e-muted);padding:0 6px 0 2px}
+.esp-step .pre{font:600 1.1rem var(--e-mono);color:var(--e-muted)}
+.esp-dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:end}
+.esp-dos .esp-step{grid-template-columns:36px minmax(0,1fr) auto 36px}
+.esp-dos .esp-step button{height:42px;font-size:1.2rem}
+.esp-dos .esp-step input{font-size:1.1rem}
+.esp-total{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:10px 12px;border-radius:8px;background:var(--e-accent-soft);font-weight:600}
+.esp-total b{font:700 1.2rem var(--e-mono);color:var(--e-accent);font-variant-numeric:tabular-nums}
+.esp-fijo{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.85rem;color:var(--e-muted)}
+.esp-fijo button,.esp-chips button,.esp-ej button{font:600 .85rem var(--e-body);padding:7px 11px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-field);color:var(--e-ink);cursor:pointer}
+.esp-fijo button[aria-pressed="true"],.esp-chips button[aria-pressed="true"]{border-color:var(--e-accent);background:var(--e-accent);color:var(--e-on-accent)}
+.esp-chips{display:flex;flex-wrap:wrap;gap:6px}
+.esp-ej{display:flex;flex-wrap:wrap;gap:8px}
+.esp details{border-top:1px solid var(--e-line);padding-top:10px}
+.esp summary{cursor:pointer;font-weight:600;color:var(--e-accent);list-style:none}
+.esp summary::-webkit-details-marker{display:none}
+.esp summary::before{content:"+ ";font-family:var(--e-mono)}
+.esp details[open] summary::before{content:"− "}
+.esp details > div{display:grid;gap:10px;margin-top:10px}
+.esp button:focus-visible,.esp input:focus-visible,.esp select:focus-visible,.esp summary:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.esp select{font:600 1rem var(--e-mono);padding:10px;border:1px solid var(--e-line);border-radius:8px;background:var(--e-field);color:var(--e-ink);width:100%}
+.esp-res{display:grid;gap:10px}
+.esp-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;padding:12px 14px;border-radius:8px;background:var(--e-field);border:1px solid var(--e-line)}
+.esp-r span{font-weight:600;font-size:.9rem;color:var(--e-muted)}
+.esp-r b{font:700 1.7rem/1.1 var(--e-mono);color:var(--e-ink);text-align:right;font-variant-numeric:tabular-nums}
+.esp-r small{grid-column:1/-1;color:var(--e-muted);font-size:.82rem}
+.esp-r.clave{background:var(--e-accent);border-color:var(--e-accent)}
+.esp-r.clave span,.esp-r.clave small{color:var(--e-on-accent);opacity:.85}
+.esp-r.clave b{color:var(--e-on-accent)}
+.esp-aviso{display:grid;gap:4px;padding:10px 12px;border-radius:8px;border:1px solid var(--e-warn);background:var(--e-warn-soft);font-size:.86rem}
+.esp-aviso[hidden]{display:none}
+.esp-alt{padding:10px 12px;border-radius:8px;border:1px dashed var(--e-line);font-size:.86rem;color:var(--e-muted)}
+.esp-alt b{color:var(--e-ink);font-family:var(--e-mono)}
+.esp-armado{margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:.88rem}
+.esp-armado li{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:8px;align-items:center}
+.esp-armado i{width:10px;height:10px;border-radius:2px;display:block}
+.esp-armado em{font-style:normal;font-family:var(--e-mono);color:var(--e-muted);font-variant-numeric:tabular-nums}
+.esp-pasos{margin:0;padding-left:20px;display:grid;gap:3px;font-size:.86rem}
+.esp-pasos b{font-family:var(--e-mono);font-weight:600}
+.esp-dib{overflow-x:auto}
+.esp-dib svg{display:block;width:100%;max-width:520px;height:auto;margin:0 auto}
+.esp-dib text{font-family:var(--e-mono);font-size:13px;fill:var(--e-ink)}
+.esp-dib .t2{fill:var(--e-muted);font-size:12px}
+.esp-nota{font-size:.8rem;color:var(--e-muted)}
+@media (prefers-reduced-motion:no-preference){.esp-r b{transition:color .2s}}
+</style>
+</head>
+<body>
+<main class="pagina">
+  <header class="cabeza">
+    <div class="cabeza-fila"><p class="k">BCP · espaciamiento del rotor</p><button type="button" class="tema" data-tema aria-label="Cambiar a modo oscuro"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span>Modo oscuro</span></button></div>
+    <h1>La cuenta de campo</h1>
+    <p class="s">Con qué cabilla tocaste el pin de paro y cuántos pies sobran afuera: la página te dice qué cabillas sacar, con qué niples completar, cuánta barra libre queda y qué medir en el repaseo.</p>
+  </header>
+  <div class="esp" data-esp data-recordar data-pre="esp">
+  <div class="esp-grid">
+    <section class="esp-panel" aria-label="Datos del pozo">
+      <h2>Datos del pozo</h2>
+      <div class="esp-seg" role="group" aria-label="Largo de las cabillas"><button type="button" data-largo="25" aria-pressed="false">Cabillas de 25 ft</button><button type="button" data-largo="30" aria-pressed="true">Cabillas de 30 ft</button></div>
+      <div class="esp-campos">
+        <div class="esp-campo"><label for="esp-cabilla">Cabilla con la que tocaste</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabilla" aria-label="Restar 1">−</button><input id="esp-cabilla" data-k="cabilla" type="number" inputmode="decimal" step="1" min="1" value="120"><span class="u"><span class="pre">#</span></span><button type="button" data-delta="1" data-para="cabilla" aria-label="Sumar 1">+</button></div></div>
+        <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="15"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida, con el rotor tocando el pin de paro.</small></div>
+        <div class="esp-dos">
+          <div class="esp-campo"><label for="esp-pandeo">Pandeo</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="pandeo" aria-label="Restar 0.5">−</button><input id="esp-pandeo" data-k="pandeo" type="number" inputmode="decimal" step="0.5" min="0" value="2"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="pandeo" aria-label="Sumar 0.5">+</button></div></div>
+          <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="3"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
+        </div>
+        <small class="esp-nota">Pandeo: lo que subes hasta recuperar el peso. Espaciamiento: lo que levantas después.</small>
+      </div>
+      <details class="esp-ayuda"><summary>¿Cuánto espaciamiento levantar?</summary><div>
+        <p class="esp-nota">Espaciamiento = estiramiento que va a tener la sarta trabajando + holgura del niple de paro.</p>
+        <div class="esp-campo"><label for="esp-diam">Diámetro de cabilla</label><select id="esp-diam" data-ay="diam"><option value="1">1"</option><option value="1-1/8" selected>1-1/8"</option><option value="1-1/4">1-1/4"</option><option value="1-1/2">1-1/2"</option></select></div>
+        <div class="esp-dos">
+          <div class="esp-campo"><label for="esp-ayF">Carga por presión</label><div class="esp-step"><button type="button" data-delta="-500" data-para="ayF" aria-label="Restar 500">−</button><input id="esp-ayF" data-k="ayF" type="number" inputmode="decimal" step="500" min="0" value="6000"><span class="u">lb</span><button type="button" data-delta="500" data-para="ayF" aria-label="Sumar 500">+</button></div></div>
+          <div class="esp-campo"><label for="esp-ayH">Holgura del niple</label><div class="esp-step"><button type="button" data-delta="-1" data-para="ayH" aria-label="Restar 1">−</button><input id="esp-ayH" data-k="ayH" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="ayH" aria-label="Sumar 1">+</button></div></div>
+        </div>
+        <div class="esp-r"><span>Con la ley de Hooke</span><b data-o="ayHooke">—</b><small data-o="ayHookeTxt"></small></div>
+        <div class="esp-r"><span>Con la regla de campo</span><b data-o="ayRegla">—</b><small data-o="ayReglaTxt"></small></div>
+        <div class="esp-ej"><button type="button" data-usar="hooke">Usar Hooke</button><button type="button" data-usar="regla">Usar la regla</button></div>
+      </div></details>
+      <h3>Medidas del cabezal</h3>
+      <small class="esp-nota">Valores de ejemplo: reemplázalos por lo que mides con la cinta en tu pozo.</small><div class="esp-dos"><div class="esp-campo"><label for="esp-prensa">Prensaestopa (stuffing box)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="prensa" aria-label="Restar 1">−</button><input id="esp-prensa" data-k="prensa" type="number" inputmode="decimal" step="1" min="0" value="24"><span class="u">pulg</span><button type="button" data-delta="1" data-para="prensa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-cabezal">Cabezal</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabezal" aria-label="Restar 1">−</button><input id="esp-cabezal" data-k="cabezal" type="number" inputmode="decimal" step="1" min="0" value="42"><span class="u">pulg</span><button type="button" data-delta="1" data-para="cabezal" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-grampa">Grampa</label><div class="esp-step"><button type="button" data-delta="-1" data-para="grampa" aria-label="Restar 1">−</button><input id="esp-grampa" data-k="grampa" type="number" inputmode="decimal" step="1" min="0" value="6"><span class="u">pulg</span><button type="button" data-delta="1" data-para="grampa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-stick">Stick-up (sobre la grampa)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="stick" aria-label="Restar 1">−</button><input id="esp-stick" data-k="stick" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="stick" aria-label="Sumar 1">+</button></div></div></div>
+      <div class="esp-total"><span>Barra libre sobre la brida</span><b data-o="libreMedida">84" · 7 ft</b></div>
+      <div class="esp-fijo"><span>¿No mediste?</span><button type="button" data-fijo="6">6 ft</button><button type="button" data-fijo="6.5">6,5 ft</button><button type="button" data-fijo="7">7 ft</button><button type="button" data-fijo="0" aria-pressed="true">Usar lo medido</button></div>
+      <details><summary>Ajustes: barra pulida y niples</summary><div>
+        <div class="esp-campo"><label for="esp-barraPulida">Largo de la barra pulida</label><div class="esp-step"><button type="button" data-delta="-1" data-para="barraPulida" aria-label="Restar 1">−</button><input id="esp-barraPulida" data-k="barraPulida" type="number" inputmode="decimal" step="1" min="0" value="40"><span class="u">ft</span><button type="button" data-delta="1" data-para="barraPulida" aria-label="Sumar 1">+</button></div></div>
+        <div class="esp-campo"><label for="esp-rotorNiple">Rotor + niple de maniobra (+ cuello)</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="rotorNiple" aria-label="Restar 0.5">−</button><input id="esp-rotorNiple" data-k="rotorNiple" type="number" inputmode="decimal" step="0.5" min="0" value="36.46"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="rotorNiple" aria-label="Sumar 0.5">+</button></div><small>Para calcular la profundidad del rotor. Ej.: rotor 32,46 ft + niple 4 ft.</small></div>
+        <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">Niples de cabilla que tienes</span><div class="esp-chips"><button type="button" data-niple="1" aria-pressed="false">1 ft</button><button type="button" data-niple="2" aria-pressed="true">2 ft</button><button type="button" data-niple="3" aria-pressed="false">3 ft</button><button type="button" data-niple="4" aria-pressed="true">4 ft</button><button type="button" data-niple="6" aria-pressed="true">6 ft</button><button type="button" data-niple="8" aria-pressed="true">8 ft</button><button type="button" data-niple="10" aria-pressed="true">10 ft</button><button type="button" data-niple="12" aria-pressed="false">12 ft</button></div><small>Se combinan hasta 3 niples.</small></div>
+      </div></details>
+      <div class="esp-ej"><button type="button" data-ejemplo="amigo">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="reporte">Ejemplo B: #134, 27 ft</button></div>
+    </section>
+    <section class="esp-panel" aria-label="Resultado" aria-live="polite">
+      <h2>Qué hacer</h2>
+      <div class="esp-res">
+        <div class="esp-r clave"><span>Saca</span><b data-o="sacar">—</b><small data-o="sacarTxt"></small></div>
+        <div class="esp-r clave"><span>Completa con niples</span><b data-o="niples">—</b><small data-o="niplesTxt"></small></div>
+        <div class="esp-r"><span>Barra libre</span><b data-o="libre">—</b><small data-o="libreTxt"></small></div>
+        <div class="esp-r"><span>Repaseo</span><b data-o="repaseo">—</b><small data-o="repaseoTxt"></small></div>
+        <div class="esp-alt" data-o="alt" hidden></div>
+        <div class="esp-aviso" data-o="avisos" hidden></div>
+      </div>
+      <div class="esp-dib" data-o="dibujo"></div>
+      <h3>Armado final, de arriba hacia abajo</h3>
+      <ul class="esp-armado" data-o="armado"></ul>
+      <h3>La cuenta paso a paso</h3><ol class="esp-pasos" data-o="pasos"></ol>
+      <p class="esp-nota" data-o="prof"></p>
+    </section>
+  </div>
+</div>
+  <section class="caso" aria-label="Caso práctico">
+    <h2>Caso práctico: un espaciamiento de campo, verificado</h2>
+    <p>Datos de un reporte de instalación de rotor (sin datos del pozo ni del cliente). La cuenta reproduce exactamente lo que se hizo en el pozo.</p>
+    <div class="caso-tabla"><table>
+      <thead><tr><th>Paso</th><th>Cuenta</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Tocó el pin de paro con la cabilla #134 (1-1/8" × 30 ft)</td><td class="n">134 − 3 sacadas</td><td class="ok">131 cabillas ✓</td></tr>
+        <tr><td>Largo de las cabillas que quedan</td><td class="n">131 × 30</td><td class="ok">3.930 ft ✓</td></tr>
+        <tr><td>Levantado: pandeo 24" + espaciamiento 48"</td><td class="n">72" = 6 ft</td><td class="ok">6 ft</td></tr>
+        <tr><td>Barra pulida 40 ft con barra libre 84" (7 ft)</td><td class="n">40 − 7</td><td class="ok">33 ft adentro</td></tr>
+        <tr><td>Fondo del rotor ya espaciado (rotor 32,46 + niple 4 + cabillas + niples + barra)</td><td class="n">32,46 + 4 + 3.930 + 24 + 33</td><td class="ok">4.023,46 ft ✓</td></tr>
+        <tr><td>Pies de la #134 que sobraban al tocar (no anotado en el reporte)</td><td class="n">4.056,46 − 4.029,46</td><td class="ok">27 ft</td></tr>
+        <tr><td>Hueco después de sacar 3 cabillas</td><td class="n">−3 + 60</td><td class="ok">57 ft</td></tr>
+        <tr><td>Niples para completar</td><td class="n">57 − 33</td><td class="ok">24 ft = 3 × 8 ✓</td></tr>
+        <tr><td>Repaseo esperado sobre la brida</td><td class="n">84" − 72"</td><td class="ok">12"</td></tr>
+        <tr><td>Peso de la sarta (indicador: 12.000 lb)</td><td class="n">3.930 ft × 3,68 lb/ft en fluido</td><td class="ok">≈ 12.600 lb ✓</td></tr>
+      </tbody>
+    </table></div>
+    <button type="button" data-cargar-caso>Cargar este caso en la calculadora</button>
+  </section>
+  <p class="pie">Método de campo del oriente venezolano: pandeo (subir hasta recuperar el peso) + espaciamiento; barra pulida de 40 ft con la barra libre medida sobre el cabezal (prensaestopa + cabezal + grampa + stick-up). Versión beta: verifica siempre con el repaseo y en el arranque. Los datos quedan guardados solo en este dispositivo.</p>
+  <p class="firma">Desarrollado por César Rojas <span>· técnico en levantamiento artificial (BCP) · del metro y la cuenta a mano, a los datos</span></p>
+</main>
+<script>(function () {
+// La cuenta de campo del espaciamiento BCP: con qué cabilla tocaste, cuánto sobra afuera, pandeo y espaciamiento
+// → cuántas cabillas sacar, con qué niples completar, barra libre y repaseo. Todo en pies, referencia: la brida.
+
+const DEF = {
+  largoCabilla: 30,
+  cabilla: 120,
+  afuera: 15,
+  pandeo: 2,
+  espacio: 3,
+  barraPulida: 40,
+  prensa: 24,
+  cabezal: 42,
+  grampa: 6,
+  stick: 12,
+  barraLibreFija: 0,
+  rotorNiple: 36.46,
+  niples: [2, 4, 6, 8, 10],
+  maxPiezas: 3,
+};
+
+// Todas las sumas posibles con hasta `max` niples de los largos disponibles (sin límite de unidades).
+function sumasDeNiples(sizes, max = 3) {
+  const lista = [...new Set(sizes.filter((n) => n > 0))].sort((a, b) => b - a);
+  const mejor = new Map([[0, []]]);
+  let frontera = [[]];
+  for (let piezas = 1; piezas <= max; piezas++) {
+    const nueva = [];
+    for (const combo of frontera) {
+      const desde = combo.length ? lista.indexOf(combo[combo.length - 1]) : 0;
+      for (let i = desde; i < lista.length; i++) {
+        const c = [...combo, lista[i]];
+        const suma = Math.round(c.reduce((a, b) => a + b, 0) * 100) / 100;
+        const previo = mejor.get(suma);
+        if (!previo || (previo.length === c.length && new Set(c).size < new Set(previo).size)) mejor.set(suma, c);
+        nueva.push(c);
+      }
+    }
+    frontera = nueva;
+  }
+  return mejor;
+}
+
+function combinarNiples(X, sizes, max = 3) {
+  const sumas = sumasDeNiples(sizes, max);
+  const clave = Math.round(X * 100) / 100;
+  if (sumas.has(clave)) return { exacta: true, piezas: sumas.get(clave), total: clave };
+  let lo = null, hi = null;
+  for (const [s, c] of sumas) {
+    if (s < clave && (!lo || s > lo.total)) lo = { total: s, piezas: c };
+    if (s > clave && (!hi || s < hi.total)) hi = { total: s, piezas: c };
+  }
+  return { exacta: false, lo, hi };
+}
+
+function cuentaDeCampo(entrada = {}) {
+  const d = { ...DEF, ...entrada };
+  const avisos = [];
+  const Lr = d.largoCabilla;
+  const levantado = d.pandeo + d.espacio;
+  const pila = (d.prensa + d.cabezal + d.grampa) / 12;
+  const barraLibre = d.barraLibreFija > 0 ? d.barraLibreFija : (d.prensa + d.cabezal + d.grampa + d.stick) / 12;
+  const adentro = d.barraPulida - barraLibre;
+  const adentroAlTocar = Lr - d.afuera;
+  const h0 = adentroAlTocar - levantado;
+
+  if (d.afuera < 0 || d.afuera > Lr) avisos.push(`Lo que sobra afuera tiene que estar entre 0 y ${Lr} ft (el largo de la cabilla).`);
+  if (levantado <= 0) avisos.push("Pandeo + espaciamiento tiene que ser mayor que cero.");
+  if (adentro <= 0) avisos.push("La barra libre no puede ser mayor que la barra pulida.");
+  if (avisos.length) return { ok: false, avisos, d };
+
+  let k = 1;
+  while (h0 + (k - 1) * Lr < adentro - 1e-9) k++;
+  const hueco = h0 + (k - 1) * Lr;
+  const niplesNecesarios = Math.round((hueco - adentro) * 100) / 100;
+
+  const opcion = (total, piezas) => {
+    const bl = barraLibre + total - niplesNecesarios;
+    return { total, piezas, barraLibre: bl, stick: bl - pila, repaseo: bl - levantado };
+  };
+  const comb = combinarNiples(niplesNecesarios, d.niples, d.maxPiezas);
+  let elegida, alternativa = null;
+  if (comb.exacta) elegida = opcion(comb.total, comb.piezas);
+  else {
+    const ops = [comb.lo, comb.hi].filter(Boolean).map((o) => opcion(o.total, o.piezas));
+    const validas = ops.filter((o) => o.stick >= 0.25);
+    const pool = validas.length ? validas : ops;
+    pool.sort((a, b) => Math.abs(a.total - niplesNecesarios) - Math.abs(b.total - niplesNecesarios) || b.barraLibre - a.barraLibre);
+    elegida = pool[0];
+    alternativa = ops.find((o) => o !== elegida) || null;
+    avisos.push(`Con los niples disponibles no se arman ${fmtPies(niplesNecesarios)} exactos: se ajusta la barra libre.`);
+  }
+  if (elegida.stick < 0) avisos.push("La barra libre no alcanza para prensaestopa, cabezal y grampa: revisa las medidas.");
+  else if (elegida.stick < 0.25 && d.barraLibreFija <= 0) avisos.push("Queda muy poca barra sobre la grampa (menos de 3\").");
+  if (elegida.repaseo < 0) avisos.push("El repaseo da negativo: lo levantado es más que la barra libre. Revisa los datos.");
+
+  const sacar = Array.from({ length: k }, (_, i) => d.cabilla - i);
+  const queda = d.cabilla - k;
+  return {
+    ok: true, d, avisos, levantado, barraLibre, pila, adentro, adentroAlTocar, h0, k, hueco, niplesNecesarios,
+    exacta: comb.exacta, elegida, alternativa, sacar, queda,
+    profundidad: d.cabilla * Lr - d.afuera + d.rotorNiple,
+    fondoFinal: d.cabilla * Lr - d.afuera + d.rotorNiple - levantado,
+  };
+}
+
+function fmtPies(ft) {
+  const neg = ft < 0;
+  let total = Math.round(Math.abs(ft) * 12);
+  const p = Math.floor(total / 12), q = total % 12;
+  const txt = p && q ? `${p}' ${q}"` : p ? `${p} ft` : `${q}"`;
+  return (neg ? "−" : "") + txt;
+}
+
+function pulgadas(ft) {
+  return Math.round(ft * 12);
+}
+
+
+const CABILLAS = {
+  "1": { nombre: '1"', diam: 2.54, peso: 2.90, regla: 12 },
+  "1-1/8": { nombre: '1-1/8"', diam: 2.8575, peso: 3.68, regla: 10 },
+  "1-1/4": { nombre: '1-1/4"', diam: 3.175, peso: 4.32, regla: 8 },
+  "1-1/2": { nombre: '1-1/2"', diam: 3.81, peso: 6.12, regla: 6 },
+};
+
+const U = { bpd: 6.2898, psi: 14.2233, lb: 2.20462, ft: 3.28084, kgm: 1.48816 };
+
+function sarta(clave, pies, sg = 1.0, F = 0) {
+  const cab = CABILLAS[clave];
+  const areaIn2 = (Math.PI * (cab.diam / 2.54) ** 2) / 4;
+  const aire = cab.peso * pies;
+  const fluido = aire * (1 - sg / 7.85);
+  const L = pies * 12, EA = 30e6 * areaIn2;
+  return { aire, fluido, porPeso: (fluido * L) / (2 * EA), porCarga: (F * L) / EA, regla: (cab.regla * pies) / 1000 };
+}
+
+const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDigits: d, maximumFractionDigits: d });
+const ft = (v) => fmt(v, Number.isInteger(Math.round(v * 100) / 100) ? 0 : 1).replace(/,0$/, "");
+const GUARDAR = "espaciamiento-bcp-v1";
+const EJEMPLOS = {
+  amigo: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
+  reporte: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
+};
+function dibujo(r) {
+  const d = r.d, e = r.elegida, Lr = d.largoCabilla;
+  const arriba = Math.max(d.afuera, e.barraLibre) + 3, abajo = r.hueco + 6;
+  const H = 360, s = (H - 40) / (arriba + abajo), y0 = 20 + arriba * s;
+  const Y = (pies) => y0 + pies * s;
+  const W = 520, xa = 110, xb = 360, w = 16;
+  const rect = (x, y1, y2, cls, ancho = w) => '<rect x="' + (x - ancho / 2) + '" y="' + Math.min(y1, y2).toFixed(1) + '" width="' + ancho + '" height="' + Math.abs(y2 - y1).toFixed(1) + '" fill="' + cls + '" stroke="var(--e-ink)" stroke-width=".8" rx="2"/>';
+  const t = (x, y, txt, anchor = "start", c = "") => '<text x="' + x + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '"' + (c ? ' class="' + c + '"' : "") + ">" + txt + "</text>";
+  let g = "";
+  g += '<line x1="20" x2="' + (W - 20) + '" y1="' + y0.toFixed(1) + '" y2="' + y0.toFixed(1) + '" stroke="var(--e-ink)" stroke-width="2"/>';
+  g += t(24, y0 - 6, "brida", "start", "t2");
+  g += t(xa, 14, "Al tocar", "middle") + t(xb, 14, "Armado final", "middle");
+  const topA = Y(-d.afuera), finA = Y(Lr - d.afuera);
+  g += rect(xa, topA, finA, "var(--e-rod)");
+  g += t(xa + 14, (topA + y0) / 2 + 4, "#" + d.cabilla + " · " + ft(d.afuera) + " ft afuera");
+  g += t(xa + 14, (y0 + finA) / 2 + 4, ft(r.adentroAlTocar) + " ft adentro", "start", "t2");
+  g += rect(xa, finA, Math.min(H - 4, finA + Lr * s), "var(--e-rod)");
+  g += t(xa + 14, Math.min(H - 8, finA + 14), "#" + (d.cabilla - 1), "start", "t2");
+  const topB = Y(-e.barraLibre), finBarra = Y(d.barraPulida - e.barraLibre), finNip = finBarra + e.total * s;
+  g += rect(xb, topB, finBarra, "var(--e-accent)", 12);
+  g += t(xb - 14, (topB + y0) / 2 + 4, "barra libre " + ft(e.barraLibre) + " ft", "end");
+  g += t(xb - 14, (y0 + finBarra) / 2 + 4, "barra adentro " + ft(d.barraPulida - e.barraLibre) + " ft", "end", "t2");
+  let yy = finBarra;
+  for (const p of e.piezas) { g += rect(xb, yy, yy + p * s, "var(--e-pony)"); g += t(xb + 14, yy + (p * s) / 2 + 4, "niple " + p + " ft"); yy += p * s; }
+  g += rect(xb, finNip, Math.min(H - 4, finNip + Lr * s), "var(--e-rod)");
+  g += t(xb + 14, Math.min(H - 8, finNip + 14), "#" + r.queda, "start", "t2");
+  const yr = Y(-e.repaseo);
+  g += '<line x1="' + (xb + 12) + '" x2="' + (xb + 60) + '" y1="' + yr.toFixed(1) + '" y2="' + yr.toFixed(1) + '" stroke="var(--e-warn)" stroke-width="1.5" stroke-dasharray="4 3"/>';
+  g += t(xb + 64, yr + 4, "repaseo " + Math.round(e.repaseo * 12) + '"');
+  return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Esquema del espaciamiento: a la izquierda la cabilla al tocar el pin de paro, a la derecha el armado final con barra pulida y niples.">' + g + "</svg>";
+}
+function init(root) {
+  const q = (s) => root.querySelector(s), qa = (s) => [...root.querySelectorAll(s)];
+  let st = { ...DEF, niples: [...DEF.niples] };
+  if (root.dataset.recordar !== undefined) { try { const g = JSON.parse(localStorage.getItem(GUARDAR) || "null"); if (g) st = { ...st, ...g }; } catch (e) {} }
+  const guardar = () => { if (root.dataset.recordar === undefined) return; try { localStorage.setItem(GUARDAR, JSON.stringify(st)); } catch (e) {} };
+  const sincronizar = () => {
+    qa("[data-k]").forEach((el) => { if (el.dataset.k in st) el.value = st[el.dataset.k]; });
+    qa("[data-largo]").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.largo === st.largoCabilla)));
+    qa("[data-fijo]").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.fijo === (st.barraLibreFija || 0))));
+    qa("[data-niple]").forEach((b) => b.setAttribute("aria-pressed", String(st.niples.includes(+b.dataset.niple))));
+  };
+  const out = (k, v) => { const el = q('[data-o="' + k + '"]'); if (el) el.textContent = v; };
+  function ayuda() {
+    const sel = q('[data-ay="diam"]'); if (!sel) return {};
+    const pies = Math.max(0, st.cabilla * st.largoCabilla - st.afuera);
+    const F = parseFloat(q('[data-k="ayF"]').value) || 0, hol = parseFloat(q('[data-k="ayH"]').value) || 0;
+    const r = sarta(sel.value, pies, 1.0, F);
+    const hooke = (r.porCarga + hol) / 12, regla = r.regla / 12;
+    out("ayHooke", ft(hooke) + " ft"); out("ayHookeTxt", fmt(r.porCarga, 1) + '" de estiramiento con ' + fmt(F) + " lb a " + fmt(pies) + " ft + " + fmt(hol) + '" de holgura');
+    out("ayRegla", ft(regla) + " ft"); out("ayReglaTxt", CABILLAS[sel.value].regla + '" por cada 1000 ft × ' + fmt(pies / 1000, 2) + " (conservadora, supone unas 25.000 lb)");
+    return { hooke: Math.round(hooke * 2) / 2, regla: Math.round(regla * 2) / 2 };
+  }
+  function render() {
+    const r = cuentaDeCampo(st);
+    out("libreMedida", fmt(st.prensa + st.cabezal + st.grampa + st.stick) + '" · ' + fmtPies((st.prensa + st.cabezal + st.grampa + st.stick) / 12));
+    ayuda();
+    const av = q('[data-o="avisos"]');
+    if (!r.ok) {
+      ["sacar", "niples", "libre", "repaseo"].forEach((k) => out(k, "—")); ["sacarTxt", "niplesTxt", "libreTxt", "repaseoTxt"].forEach((k) => out(k, ""));
+      av.hidden = false; av.innerHTML = r.avisos.map((a) => "<span>" + a + "</span>").join(""); q('[data-o="alt"]').hidden = true; return;
+    }
+    const e = r.elegida;
+    out("sacar", r.k + (r.k === 1 ? " cabilla" : " cabillas"));
+    const lista = r.sacar.map((n) => "#" + n);
+    out("sacarTxt", (lista.length > 1 ? lista.slice(0, -1).join(", ") + " y " + lista[lista.length - 1] : lista[0]) + ". Queda arriba la #" + r.queda + ".");
+    out("niples", e.piezas.length ? e.piezas.join(" + ") + " ft" : "Ninguno");
+    out("niplesTxt", e.piezas.length ? (e.piezas.length === 1 ? "1 niple" : e.piezas.length + " niples") + ", total " + ft(e.total) + " ft" + (r.exacta ? "" : " (la cuenta pedía " + ft(r.niplesNecesarios) + " ft)") : "La barra pulida completa justo el hueco.");
+    out("libre", fmtPies(e.barraLibre));
+    out("libreTxt", "Sobre la brida. Quedan " + fmtPies(e.stick) + " sobre la grampa.");
+    out("repaseo", Math.round(e.repaseo * 12) + '"');
+    out("repaseoTxt", "Sobre la brida al volver a tocar (barra libre − " + ft(r.levantado) + " ft). Si marca unas pulgadas menos está bien: la sarta se recuesta.");
+    const alt = q('[data-o="alt"]');
+    if (r.alternativa) { const a = r.alternativa; alt.hidden = false; alt.innerHTML = "Otra opción: niples <b>" + (a.piezas.join(" + ") || "0") + " ft</b> → barra libre <b>" + fmtPies(a.barraLibre) + "</b>, repaseo <b>" + Math.round(a.repaseo * 12) + '"</b>' + (a.stick < 0.25 ? " (no deja barra sobre la grampa)" : "") + "."; }
+    else alt.hidden = true;
+    av.hidden = !r.avisos.length; av.innerHTML = r.avisos.map((a) => "<span>" + a + "</span>").join("");
+    q('[data-o="dibujo"]').innerHTML = dibujo(r);
+    const armado = [["var(--e-accent)", "Barra pulida", ft(st.barraPulida) + " ft (" + ft(st.barraPulida - e.barraLibre) + " adentro)"]]
+      .concat(e.piezas.map((p) => ["var(--e-pony)", "Niple de cabilla", p + " ft"]))
+      .concat([["var(--e-rod)", "Cabilla #" + r.queda + " y el resto de la sarta", ""]]);
+    q('[data-o="armado"]').innerHTML = armado.map(([c, n, m]) => '<li><i style="background:' + c + '"></i><span>' + n + "</span><em>" + m + "</em></li>").join("");
+    const pasos = q('[data-o="pasos"]');
+    if (pasos) pasos.innerHTML = [
+      "Levantado: pandeo + espaciamiento = <b>" + ft(st.pandeo) + " + " + ft(st.espacio) + " = " + ft(r.levantado) + " ft</b>.",
+      "De la #" + st.cabilla + " quedaban " + ft(r.adentroAlTocar) + " ft adentro; después de levantar quedan <b>" + ft(r.h0) + " ft</b>.",
+      "Barra que va adentro: " + ft(st.barraPulida) + " − " + ft(r.barraLibre) + " = <b>" + ft(r.adentro) + " ft</b>.",
+      r.k > 1 ? ft(r.h0) + " ft no alcanzan para " + ft(r.adentro) + ": se sacan " + r.k + " cabillas y el hueco queda en <b>" + ft(r.hueco) + " ft</b>." : "Se saca la #" + st.cabilla + ": el hueco es <b>" + ft(r.hueco) + " ft</b>.",
+      "Niples: " + ft(r.hueco) + " − " + ft(r.adentro) + " = <b>" + ft(r.niplesNecesarios) + " ft</b>" + (r.exacta ? "." : "; no hay combinación exacta, se usan " + ft(e.total) + " ft y la barra libre queda en " + fmtPies(e.barraLibre) + "."),
+      "Repaseo: " + fmtPies(e.barraLibre) + " − " + ft(r.levantado) + " ft = <b>" + Math.round(e.repaseo * 12) + '"</b> sobre la brida.',
+    ].map((p) => "<li>" + p + "</li>").join("");
+    out("prof", "Fondo del rotor desde la brida: " + fmt(r.profundidad, 2) + " ft al tocar el pin de paro y " + fmt(r.fondoFinal, 2) + " ft en posición de trabajo.");
+    guardar();
+  }
+  qa("[data-k]").forEach((el) => el.addEventListener("input", () => { if (el.dataset.k in st) { st[el.dataset.k] = parseFloat(el.value) || 0; } render(); }));
+  qa("[data-delta]").forEach((b) => b.addEventListener("click", () => {
+    const el = q('[data-k="' + b.dataset.para + '"]'); const v = (parseFloat(el.value) || 0) + parseFloat(b.dataset.delta);
+    el.value = Math.max(parseFloat(el.min || "0"), Math.round(v * 100) / 100); el.dispatchEvent(new Event("input"));
+  }));
+  qa("[data-largo]").forEach((b) => b.addEventListener("click", () => { st.largoCabilla = +b.dataset.largo; sincronizar(); render(); }));
+  qa("[data-fijo]").forEach((b) => b.addEventListener("click", () => { st.barraLibreFija = +b.dataset.fijo; sincronizar(); render(); }));
+  qa("[data-niple]").forEach((b) => b.addEventListener("click", () => {
+    const n = +b.dataset.niple; st.niples = st.niples.includes(n) ? st.niples.filter((x) => x !== n) : [...st.niples, n].sort((a, c) => a - c); sincronizar(); render();
+  }));
+  qa("[data-ejemplo]").forEach((b) => b.addEventListener("click", () => { st = { ...st, ...EJEMPLOS[b.dataset.ejemplo], barraLibreFija: 0, prensa: 24, cabezal: 42, grampa: 6, stick: 12 }; sincronizar(); render(); }));
+  qa('[data-ay], [data-k="ayF"], [data-k="ayH"]').forEach((el) => el.addEventListener("input", ayuda));
+  qa("[data-usar]").forEach((b) => b.addEventListener("click", () => { const a = ayuda(); st.espacio = a[b.dataset.usar] || st.espacio; sincronizar(); render(); }));
+  sincronizar(); render();
+}
+document.querySelectorAll("[data-esp]").forEach(init);
+})();</script>
+<script>(function () {
+  var KEY = "espaciamiento-bcp-tema", root = document.documentElement, btn = document.querySelector("[data-tema]");
+  if (!btn) return;
+  var oscuroSistema = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
+  function actual() { var t = root.getAttribute("data-theme"); if (t) return t; return oscuroSistema && oscuroSistema.matches ? "dark" : "light"; }
+  function pintar() { var oscuro = actual() === "dark"; btn.querySelector("span").textContent = oscuro ? "Modo claro" : "Modo oscuro"; btn.setAttribute("aria-label", oscuro ? "Cambiar a modo claro" : "Cambiar a modo oscuro"); }
+  try { var g = localStorage.getItem(KEY); if (g === "dark" || g === "light") root.setAttribute("data-theme", g); } catch (e) {}
+  btn.addEventListener("click", function () { var n = actual() === "dark" ? "light" : "dark"; root.setAttribute("data-theme", n); try { localStorage.setItem(KEY, n); } catch (e) {} pintar(); });
+  if (oscuroSistema && oscuroSistema.addEventListener) oscuroSistema.addEventListener("change", pintar);
+  pintar();
+  var cargar = document.querySelector("[data-cargar-caso]");
+  if (cargar) cargar.addEventListener("click", function () { var b = document.querySelector('[data-ejemplo="reporte"]'); if (b) b.click(); var r = document.querySelector('[aria-label="Resultado"]'); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" }); });
+})();</script>
+</body>
+</html>
