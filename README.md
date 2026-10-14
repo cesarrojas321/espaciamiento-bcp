@@ -29,7 +29,7 @@ Esta herramienta lleva esa cuenta a datos. Con lo que se mide en el pozo, en seg
 - Profundidad del fondo del rotor al tocar y en posición de trabajo.
 - Esquema de la sarta antes y después, y la cuenta paso a paso.
 
-**Decodificar la bomba:** con el modelo del estator (ej. 98-1580, 200K1450, 20-40-2100) da el caudal por rpm, a 100 rpm y por vuelta, la presión máxima y el caudal teórico y real a las rpm y eficiencia que se elijan (300 rpm y 85 % por defecto). Muestra de dónde sale cada número, el cálculo de cabeza (× 6 y sumar el 5 %) y una tabla rápida de bombas comunes, entre ellas la KUDU 200K1450 (SLB).
+**Decodificar la bomba:** con el modelo del estator (ej. 98-1580, 200K1450, 20-40-2100) da el caudal por rpm, a 100 rpm y por vuelta, la presión máxima y el caudal teórico y real a las rpm y eficiencia que se elijan (300 rpm y 85 % por defecto). Muestra de dónde sale cada número, el cálculo de cabeza (× 6 y sumar el 5 %) y una tabla rápida de bombas comunes, entre ellas la KUDU 200K1450 (SLB). Explica por qué el caudal real es menor que el teórico (espaciamiento, presión, desgaste, gas, sumergencia) y calcula la eficiencia real con la prueba del pozo.
 
 | Código | Significado | Cuenta |
 |---|---|---|

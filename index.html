@@ -81,6 +81,14 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .decod-ojo[hidden]{display:none}
 .decod-ojo b{font-weight:700}
 .decod-ojo .t{font:700 .95rem var(--e-mono)}
+.decod-casos{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.decod-casos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.decod-casos article{display:grid;gap:6px;align-content:start;padding:12px 14px;border-radius:8px;border:1px solid var(--e-line);border-top:3px solid var(--e-warn);background:var(--e-field);min-width:0}
+.decod-casos article.bien{border-top-color:var(--e-accent)}
+.decod-casos h4{margin:0;font:650 1rem var(--e-display);color:var(--e-ink)}
+.decod-casos p{font-size:.86rem}
+.decod .decod-casos p.efecto{color:var(--e-ink);font-weight:600}
+.decod .decod-lema{font:700 .95rem var(--e-mono);color:var(--e-ink);text-align:center;padding:8px 10px;border-radius:8px;background:var(--e-accent-soft);max-width:none}
 .decod-tabla{overflow-x:auto}
 .decod-tabla table{width:100%;border-collapse:collapse;font:400 .9rem/1.35 var(--e-body);color:var(--e-ink)}
 .decod-tabla th,.decod-tabla td{padding:7px 8px;border-bottom:1px solid var(--e-line);text-align:left;vertical-align:middle}
@@ -274,6 +282,21 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     </table></div>
     <p>A 300 rpm = bpd a 100 rpm × 3; es teórico (100 % de eficiencia) y el real es de un 85 % a un 90 % de eso. Ojo: 6,29 es la conversión de m³ a barriles y siempre es la misma; el factor por rpm cambia con cada bomba.</p>
     <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención; los códigos de NOV encajan con ella, pero conviene confirmar en el catálogo del fabricante.</p>
+    <h3>¿Por qué el real es menor que el teórico?</h3>
+    <p>El estator está fijo, enroscado a la tubería; con el espaciamiento se acomoda el rotor dentro del estator. El número del código supone que el rotor trabaja en todo el estator y que no se devuelve nada de fluido: caudal real = teórico × eficiencia. Las rpm son vueltas por minuto, pero el caudal se da por día (÷ 1.440 para tenerlo por minuto).</p>
+    <div class="decod-casos">
+      <article class="bien"><h4>Bien espaciado</h4><p>Trabajando, con las cabillas ya estiradas, el rotor cubre todo el estator y queda justo encima del pin de paro.</p><p class="efecto">Caudal según el diseño.</p></article>
+      <article><h4>Rotor alto (demasiado espaciamiento)</h4><p>La parte de abajo del estator queda sin rotor: esas etapas no trabajan y la presión se reparte entre menos etapas.</p><p class="efecto">Escurre más y salen menos barriles. Muy alto: casi no bombea.</p></article>
+      <article><h4>Rotor bajo (poco espaciamiento)</h4><p>Cuando la sarta se estira con la carga, el rotor golpea o roza el pin de paro.</p><p class="efecto">Al principio el caudal puede estar bien, pero sube el torque y se dañan rotor, pin de paro o cabillas.</p></article>
+    </div>
+    <p class="decod-lema">Alto, pierdes barriles · Bajo, rompes equipo</p>
+    <p>Otras cosas que bajan la eficiencia: presión cerca del límite de la bomba, desgaste por arena u horas, gas en la succión y nivel bajo (poca sumergencia). El crudo pesado de la Faja escurre menos y ayuda a la eficiencia, pero pide más torque.</p>
+    <h3>Cómo se ve en campo: eficiencia = prueba ÷ teórico</h3>
+    <div class="decod-dos">
+      <label class="decod-campo">Prueba del pozo<span class="decod-caja"><input data-db="prueba" type="number" inputmode="decimal" min="0" step="50" value="1300"><i>bpd</i></span></label>
+      <dl class="decod-salida"><div><dt>Eficiencia real</dt><dd data-db="efReal"></dd></div></dl>
+    </div>
+    <p data-db="efTexto"></p>
   </section>
   <p class="pie">Método de campo del oriente venezolano: pandeo (subir hasta recuperar el peso) + espaciamiento; barra pulida de 40 ft con la barra libre medida sobre el cabezal (prensaestopa + cabezal + grampa + stick-up). Versión beta: verifica siempre con el repaseo y en el arranque. Los datos quedan guardados solo en este dispositivo.</p>
   <p class="firma">Desarrollado por César Rojas <span>· técnico en levantamiento artificial (BCP) · del metro y la cuenta a mano, a los datos</span></p>
@@ -594,7 +617,8 @@ function render() {
   const d = decodificarBomba(texto);
   if (!d) {
     put("tipo", "Formato no reconocido. Ejemplos: 98-1580, 200K1450 o 20-40-2100.");
-    ["qrpm", "q100", "teorico", "vuelta", "psi", "caudal"].forEach((k) => put(k, "—"));
+    ["qrpm", "q100", "teorico", "vuelta", "psi", "caudal", "efReal"].forEach((k) => put(k, "—"));
+    put("efTexto", "");
     put("pasos", "");
     q("error").hidden = true;
     return;
@@ -609,6 +633,10 @@ function render() {
   q("tTeorico").textContent = "Teórico a " + fmt(rpm) + " rpm";
   put("teorico", fmt(teorico) + " bpd<small>al 100 % de eficiencia</small>");
   put("caudal", fmt(caudal) + " bpd<small>a " + fmt(rpm) + " rpm y " + fmt(ef) + " %</small>");
+  const prueba = Math.max(0, parseFloat(q("prueba").value) || 0), efReal = teorico > 0 ? (prueba / teorico) * 100 : 0;
+  put("efReal", teorico > 0 ? fmt(efReal) + " %<small>" + fmt(prueba) + " ÷ " + fmt(teorico) + "</small>" : "—");
+  put("efTexto", teorico <= 0 ? "" : efReal > 100 ? "Más de 100 %: revisa la prueba o las rpm." :
+    "Con " + fmt(rpm) + " rpm, esta bomba da " + fmt(teorico) + " bpd teóricos y la prueba da " + fmt(prueba) + ": eficiencia de " + fmt(efReal) + " %. Compárala con la del arranque y cruza con el nivel. <b>Nivel alto:</b> el pozo tiene fluido y la bomba no lo saca; sospecha de la bomba (desgaste, escurrimiento o rotor alto). <b>Nivel bajo:</b> la bomba está bien; el pozo no aporta más.");
   const vuelta = "A 1 rpm el rotor da 1.440 vueltas al día: " + num(d.m3Rpm, 3) + " m³ ÷ 1.440 = <b>" + fmt(cm3) + " cm³ por vuelta</b>. Es el volumen de las cavidades: 4 · d · E · Pe.";
   const teo = "A " + fmt(rpm) + " rpm, teórico: " + fmt(d.bpdRpm, 2) + " × " + fmt(rpm) + " = <b>" + fmt(teorico) + " bpd</b>" + (rpm === 300 ? " (o " + fmt(d.bpd100) + " × 3)" : "") + ".";
   const real = "Real: " + fmt(teorico) + " × " + fmt(ef) + " % de eficiencia = <b>" + fmt(caudal) + " bpd</b>.";
@@ -637,7 +665,7 @@ function render() {
     (Math.abs(m3 / 100 - 1) < 0.15 ? " Con esta bomba casi no se nota porque " + n + " está cerca de 100; con la 200K1450 da el doble." : "") + "</span>" +
     "<span><b>Con el " + fx + " en la mano, el " + n + " ya no se usa.</b> Cada paso usa solo el número anterior.</span>");
 }
-["modelo", "rpm", "efic"].forEach((k) => q(k).addEventListener("input", render));
+["modelo", "rpm", "efic", "prueba"].forEach((k) => q(k).addEventListener("input", render));
 raiz.querySelectorAll("[data-modelo]").forEach((b) => b.addEventListener("click", () => { q("modelo").value = b.dataset.modelo; render(); }));
 render();
 })();</script>
