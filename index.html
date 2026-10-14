@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Espaciamiento BCP</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><script>(function(){var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap";document.head.appendChild(l);})();</script>
 <style>
 :root{
   --e-bg:#eef1f5;--e-card:#ffffff;--e-field:#f6f8fb;--e-ink:#14213a;--e-muted:#5b6578;--e-line:#cfd6e2;
@@ -128,11 +128,11 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
       <h2>Datos del pozo</h2>
       <div class="esp-seg" role="group" aria-label="Largo de las cabillas"><button type="button" data-largo="25" aria-pressed="false">Cabillas de 25 ft</button><button type="button" data-largo="30" aria-pressed="true">Cabillas de 30 ft</button></div>
       <div class="esp-campos">
-        <div class="esp-campo"><label for="esp-cabilla">Cabilla con la que tocaste</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabilla" aria-label="Restar 1">−</button><input id="esp-cabilla" data-k="cabilla" type="number" inputmode="decimal" step="1" min="1" value="120"><span class="u"><span class="pre">#</span></span><button type="button" data-delta="1" data-para="cabilla" aria-label="Sumar 1">+</button></div></div>
-        <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="15"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida, con el rotor tocando el pin de paro.</small></div>
+        <div class="esp-campo"><label for="esp-cabilla">Cabilla con la que tocaste</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabilla" aria-label="Restar 1">−</button><input id="esp-cabilla" data-k="cabilla" type="number" inputmode="decimal" step="1" min="1" value="134"><span class="u"><span class="pre">#</span></span><button type="button" data-delta="1" data-para="cabilla" aria-label="Sumar 1">+</button></div></div>
+        <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="27"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida, con el rotor tocando el pin de paro.</small></div>
         <div class="esp-dos">
           <div class="esp-campo"><label for="esp-pandeo">Pandeo</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="pandeo" aria-label="Restar 0.5">−</button><input id="esp-pandeo" data-k="pandeo" type="number" inputmode="decimal" step="0.5" min="0" value="2"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="pandeo" aria-label="Sumar 0.5">+</button></div></div>
-          <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="3"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
+          <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="4"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
         </div>
         <small class="esp-nota">Pandeo: lo que subes hasta recuperar el peso. Espaciamiento: lo que levantas después.</small>
       </div>
@@ -205,10 +205,10 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 
 const DEF = {
   largoCabilla: 30,
-  cabilla: 120,
-  afuera: 15,
+  cabilla: 134,
+  afuera: 27,
   pandeo: 2,
-  espacio: 3,
+  espacio: 4,
   barraPulida: 40,
   prensa: 24,
   cabezal: 42,
@@ -338,7 +338,7 @@ function sarta(clave, pies, sg = 1.0, F = 0) {
 
 const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDigits: d, maximumFractionDigits: d });
 const ft = (v) => fmt(v, Number.isInteger(Math.round(v * 100) / 100) ? 0 : 1).replace(/,0$/, "");
-const GUARDAR = "espaciamiento-bcp-v1";
+const GUARDAR = "espaciamiento-bcp-v2";
 const EJEMPLOS = {
   amigo: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
   reporte: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
