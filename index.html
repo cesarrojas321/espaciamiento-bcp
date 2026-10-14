@@ -187,7 +187,8 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
       <div class="esp-seg" role="group" aria-label="Largo de las cabillas"><button type="button" data-largo="25" aria-pressed="false">Cabillas de 25 ft</button><button type="button" data-largo="30" aria-pressed="true">Cabillas de 30 ft</button></div>
       <div class="esp-campos">
         <div class="esp-campo"><label for="esp-cabilla">Cabilla con la que tocaste</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabilla" aria-label="Restar 1">−</button><input id="esp-cabilla" data-k="cabilla" type="number" inputmode="decimal" step="1" min="1" value="134"><span class="u"><span class="pre">#</span></span><button type="button" data-delta="1" data-para="cabilla" aria-label="Sumar 1">+</button></div></div>
-        <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="27"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida, con el rotor tocando el pin de paro.</small></div>
+        <div class="esp-campo"><label for="esp-afuera">Pies de esa cabilla que sobran afuera</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="afuera" aria-label="Restar 0.5">−</button><input id="esp-afuera" data-k="afuera" type="number" inputmode="decimal" step="0.5" min="0" value="27"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="afuera" aria-label="Sumar 0.5">+</button></div><small>Medidos sobre la brida.</small></div>
+        <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">¿Cuándo mediste lo que sobra?</span><div class="esp-seg" role="group" aria-label="Cuándo mediste lo que sobra"><button type="button" data-medido="tocar" aria-pressed="true">Al tocar el pin</button><button type="button" data-medido="levantado" aria-pressed="false">Ya levantado</button></div><small>Ya levantado: después de recuperar el peso (pandeo) y levantar el espaciamiento. Así lo cuenta el método de las marcas: lo que queda adentro + la cabilla que sacas − la barra adentro.</small></div>
         <div class="esp-dos">
           <div class="esp-campo"><label for="esp-pandeo">Pandeo</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="pandeo" aria-label="Restar 0.5">−</button><input id="esp-pandeo" data-k="pandeo" type="number" inputmode="decimal" step="0.5" min="0" value="2"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="pandeo" aria-label="Sumar 0.5">+</button></div></div>
           <div class="esp-campo"><label for="esp-espacio">Espaciamiento</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="espacio" aria-label="Restar 0.5">−</button><input id="esp-espacio" data-k="espacio" type="number" inputmode="decimal" step="0.5" min="0" value="4"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="espacio" aria-label="Sumar 0.5">+</button></div></div>
@@ -229,7 +230,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div class="esp-campo"><label for="esp-rotorNiple">Rotor + niple de maniobra (+ cuello)</label><div class="esp-step"><button type="button" data-delta="-0.5" data-para="rotorNiple" aria-label="Restar 0.5">−</button><input id="esp-rotorNiple" data-k="rotorNiple" type="number" inputmode="decimal" step="0.5" min="0" value="36.46"><span class="u">ft</span><button type="button" data-delta="0.5" data-para="rotorNiple" aria-label="Sumar 0.5">+</button></div><small>Para calcular la profundidad del rotor. Ej.: rotor 32,46 ft + niple 4 ft.</small></div>
         <div class="esp-campo"><span style="font-weight:600;font-size:.92rem">Niples de cabilla que tienes</span><div class="esp-chips"><button type="button" data-niple="1" aria-pressed="false">1 ft</button><button type="button" data-niple="2" aria-pressed="true">2 ft</button><button type="button" data-niple="3" aria-pressed="false">3 ft</button><button type="button" data-niple="4" aria-pressed="true">4 ft</button><button type="button" data-niple="6" aria-pressed="true">6 ft</button><button type="button" data-niple="8" aria-pressed="true">8 ft</button><button type="button" data-niple="10" aria-pressed="true">10 ft</button><button type="button" data-niple="12" aria-pressed="false">12 ft</button></div><small>Se combinan hasta 3 niples.</small></div>
       </div></details>
-      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button><button type="button" data-ejemplo="c">Ejemplo C: 25 ft, #120, 10 ft</button></div>
+      <div class="esp-ej"><button type="button" data-ejemplo="a">Ejemplo A: #120, 15 ft</button><button type="button" data-ejemplo="b">Ejemplo B: #134, 27 ft</button><button type="button" data-ejemplo="c">Ejemplo C: 25 ft, #120, 15 ft ya levantado</button></div>
     </section>
     <section class="esp-panel" aria-label="Resultado" aria-live="polite">
       <h2>Qué hacer</h2>
@@ -339,6 +340,7 @@ const DEF = {
   largoCabilla: 30,
   cabilla: 134,
   afuera: 27,
+  medido: "tocar", // "tocar": lo que sobra se midió al tocar el pin; "levantado": ya con pandeo + espaciamiento
   pandeo: 2,
   espacio: 4,
   barraPulida: 40,
@@ -394,11 +396,13 @@ function cuentaDeCampo(entrada = {}) {
   const pila = (d.prensa + d.cabezal + d.grampa) / 12;
   const barraLibre = d.barraLibreFija > 0 ? d.barraLibreFija : (d.prensa + d.cabezal + d.grampa + d.stick) / 12;
   const adentro = d.barraPulida - barraLibre;
-  const adentroAlTocar = Lr - d.afuera;
+  const afueraAlTocar = d.medido === "levantado" ? d.afuera - levantado : d.afuera;
+  const adentroAlTocar = Lr - afueraAlTocar;
   const h0 = adentroAlTocar - levantado;
 
   if (d.afuera < 0 || d.afuera > Lr) avisos.push(`Lo que sobra afuera tiene que estar entre 0 y ${Lr} ft (el largo de la cabilla).`);
   if (levantado <= 0) avisos.push("Pandeo + espaciamiento tiene que ser mayor que cero.");
+  if (d.medido === "levantado" && afueraAlTocar < 0) avisos.push("Ya levantado no pueden sobrar menos pies que lo levantado: revisa lo medido.");
   if (adentro <= 0) avisos.push("La barra libre no puede ser mayor que la barra pulida.");
   if (avisos.length) return { ok: false, avisos, d };
 
@@ -430,10 +434,10 @@ function cuentaDeCampo(entrada = {}) {
   const sacar = Array.from({ length: k }, (_, i) => d.cabilla - i);
   const queda = d.cabilla - k;
   return {
-    ok: true, d, avisos, levantado, barraLibre, pila, adentro, adentroAlTocar, h0, k, hueco, niplesNecesarios,
+    ok: true, d, avisos, levantado, afueraAlTocar, barraLibre, pila, adentro, adentroAlTocar, h0, k, hueco, niplesNecesarios,
     exacta: comb.exacta, elegida, alternativa, sacar, queda,
-    profundidad: d.cabilla * Lr - d.afuera + d.rotorNiple,
-    fondoFinal: d.cabilla * Lr - d.afuera + d.rotorNiple - levantado,
+    profundidad: d.cabilla * Lr - afueraAlTocar + d.rotorNiple,
+    fondoFinal: d.cabilla * Lr - afueraAlTocar + d.rotorNiple - levantado,
   };
 }
 
@@ -472,13 +476,13 @@ const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDig
 const ft = (v) => fmt(v, Number.isInteger(Math.round(v * 100) / 100) ? 0 : 1).replace(/,0$/, "");
 const GUARDAR = "espaciamiento-bcp-v2";
 const EJEMPLOS = {
-  a: { largoCabilla: 30, cabilla: 120, afuera: 15, pandeo: 2, espacio: 3 },
-  b: { largoCabilla: 30, cabilla: 134, afuera: 27, pandeo: 2, espacio: 4, rotorNiple: 36.46 },
-  c: { largoCabilla: 25, cabilla: 120, afuera: 10, pandeo: 2, espacio: 3 },
+  a: { largoCabilla: 30, cabilla: 120, afuera: 15, medido: "tocar", pandeo: 2, espacio: 3 },
+  b: { largoCabilla: 30, cabilla: 134, afuera: 27, medido: "tocar", pandeo: 2, espacio: 4, rotorNiple: 36.46 },
+  c: { largoCabilla: 25, cabilla: 120, afuera: 15, medido: "levantado", pandeo: 2, espacio: 3 },
 };
 function dibujo(r) {
   const d = r.d, e = r.elegida, Lr = d.largoCabilla;
-  const arriba = Math.max(d.afuera, e.barraLibre) + 3, abajo = r.hueco + 6;
+  const arriba = Math.max(r.afueraAlTocar, e.barraLibre) + 3, abajo = r.hueco + 6;
   const H = 360, s = (H - 40) / (arriba + abajo), y0 = 20 + arriba * s;
   const Y = (pies) => y0 + pies * s;
   const W = 520, xa = 110, xb = 360, w = 16;
@@ -488,9 +492,9 @@ function dibujo(r) {
   g += '<line x1="20" x2="' + (W - 20) + '" y1="' + y0.toFixed(1) + '" y2="' + y0.toFixed(1) + '" stroke="var(--e-ink)" stroke-width="2"/>';
   g += t(24, y0 - 6, "brida", "start", "t2");
   g += t(xa, 14, "Al tocar", "middle") + t(xb, 14, "Armado final", "middle");
-  const topA = Y(-d.afuera), finA = Y(Lr - d.afuera);
+  const topA = Y(-r.afueraAlTocar), finA = Y(Lr - r.afueraAlTocar);
   g += rect(xa, topA, finA, "var(--e-rod)");
-  g += t(xa + 14, (topA + y0) / 2 + 4, "#" + d.cabilla + " · " + ft(d.afuera) + " ft afuera");
+  g += t(xa + 14, (topA + y0) / 2 + 4, "#" + d.cabilla + " · " + ft(r.afueraAlTocar) + " ft afuera");
   g += t(xa + 14, (y0 + finA) / 2 + 4, ft(r.adentroAlTocar) + " ft adentro", "start", "t2");
   g += rect(xa, finA, Math.min(H - 4, finA + Lr * s), "var(--e-rod)");
   g += t(xa + 14, Math.min(H - 8, finA + 14), "#" + (d.cabilla - 1), "start", "t2");
@@ -515,18 +519,20 @@ function init(root) {
   const sincronizar = () => {
     qa("[data-k]").forEach((el) => { if (el.dataset.k in st) el.value = st[el.dataset.k]; });
     qa("[data-largo]").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.largo === st.largoCabilla)));
+    qa("[data-medido]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.medido === (st.medido || "tocar"))));
     qa("[data-fijo]").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.fijo === (st.barraLibreFija || 0))));
     qa("[data-niple]").forEach((b) => b.setAttribute("aria-pressed", String(st.niples.includes(+b.dataset.niple))));
   };
   const out = (k, v) => { const el = q('[data-o="' + k + '"]'); if (el) el.textContent = v; };
   function ayuda() {
     const sel = q('[data-ay="diam"]'); if (!sel) return {};
-    const pies = Math.max(0, st.cabilla * st.largoCabilla - st.afuera);
+    const afT = st.medido === "levantado" ? st.afuera - st.pandeo - st.espacio : st.afuera;
+    const pies = Math.max(0, st.cabilla * st.largoCabilla - afT);
     const F = parseFloat(q('[data-k="ayF"]').value) || 0, hol = parseFloat(q('[data-k="ayH"]').value) || 0;
     const r = sarta(sel.value, pies, 1.0, F);
     const hooke = (r.porCarga + hol) / 12, regla = r.regla / 12, pie = pies / 1000;
     out("ayProf", fmt(pies) + " ft");
-    out("ayProfTxt", "Cabilla #" + st.cabilla + " × " + ft(st.largoCabilla) + " ft − " + ft(st.afuera) + " ft que sobran = " + fmt(pies) + " ft (solo cabillas; si hay niples en la sarta, súmalos).");
+    out("ayProfTxt", "Cabilla #" + st.cabilla + " × " + ft(st.largoCabilla) + " ft − " + ft(afT) + " ft que sobraban al tocar = " + fmt(pies) + " ft (solo cabillas; si hay niples en la sarta, súmalos).");
     out("ayPie", ft(pie) + " ft"); out("ayPieTxt", "1 ft × " + fmt(pies / 1000, 2) + " miles de pies. Equivale a 12 pulgadas por cada 1000 ft: la regla de la cabilla de 1 pulgada.");
     out("ayHooke", ft(hooke) + " ft"); out("ayHookeTxt", fmt(r.porCarga, 1) + '" de estiramiento con ' + fmt(F) + " lb a " + fmt(pies) + " ft + " + fmt(hol) + '" de holgura');
     out("ayRegla", ft(regla) + " ft"); out("ayReglaTxt", CABILLAS[sel.value].regla + '" por cada 1000 ft × ' + fmt(pies / 1000, 2) + " (conservadora, supone unas 25.000 lb)");
@@ -566,7 +572,7 @@ function init(root) {
     const pasos = q('[data-o="pasos"]');
     if (pasos) pasos.innerHTML = [
       "Levantado: pandeo + espaciamiento = <b>" + ft(st.pandeo) + " + " + ft(st.espacio) + " = " + ft(r.levantado) + " ft</b>.",
-      "De la #" + st.cabilla + " quedaban " + ft(r.adentroAlTocar) + " ft adentro; después de levantar quedan <b>" + ft(r.h0) + " ft</b>.",
+      st.medido === "levantado" ? "Ya levantado, de la #" + st.cabilla + " sobran " + ft(st.afuera) + " ft afuera y quedan <b>" + ft(r.h0) + " ft</b> adentro (al tocar quedaban " + ft(r.adentroAlTocar) + ")." : "De la #" + st.cabilla + " quedaban " + ft(r.adentroAlTocar) + " ft adentro; después de levantar quedan <b>" + ft(r.h0) + " ft</b>.",
       "Barra que va adentro: " + ft(st.barraPulida) + " − " + ft(r.barraLibre) + " = <b>" + ft(r.adentro) + " ft</b>.",
       r.k > 1 ? ft(r.h0) + " ft no alcanzan para " + ft(r.adentro) + ": se sacan " + r.k + " cabillas y el hueco queda en <b>" + ft(r.hueco) + " ft</b>." : "Se saca la #" + st.cabilla + ": el hueco es <b>" + ft(r.hueco) + " ft</b>.",
       "Niples: " + ft(r.hueco) + " − " + ft(r.adentro) + " = <b>" + ft(r.niplesNecesarios) + " ft</b>" + (r.exacta ? "." : "; no hay combinación exacta, se usan " + ft(e.total) + " ft y la barra libre queda en " + fmtPies(e.barraLibre) + "."),
@@ -585,6 +591,7 @@ function init(root) {
   qa("[data-niple]").forEach((b) => b.addEventListener("click", () => {
     const n = +b.dataset.niple; st.niples = st.niples.includes(n) ? st.niples.filter((x) => x !== n) : [...st.niples, n].sort((a, c) => a - c); sincronizar(); render();
   }));
+  qa("[data-medido]").forEach((b) => b.addEventListener("click", () => { st.medido = b.dataset.medido; sincronizar(); render(); }));
   qa("[data-ejemplo]").forEach((b) => b.addEventListener("click", () => { st = { ...st, ...EJEMPLOS[b.dataset.ejemplo], barraLibreFija: 0, prensa: 24, cabezal: 42, grampa: 6, stick: 12 }; sincronizar(); render(); }));
   qa('[data-ay], [data-k="ayF"], [data-k="ayH"]').forEach((el) => el.addEventListener("input", ayuda));
   qa("[data-usar]").forEach((b) => b.addEventListener("click", () => { const a = ayuda(); st.espacio = a[b.dataset.usar] || st.espacio; sincronizar(); render(); }));
