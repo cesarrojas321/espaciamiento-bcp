@@ -29,6 +29,14 @@ Esta herramienta lleva esa cuenta a datos. Con lo que se mide en el pozo, en seg
 - Profundidad del fondo del rotor al tocar y en posición de trabajo.
 - Esquema de la sarta antes y después, y la cuenta paso a paso.
 
+**Decodificar la bomba:** con el modelo del estator (ej. 98-1580, 200K1450, 20-40-2100) da el caudal por rpm, a 100 rpm y por vuelta, la presión máxima y el caudal estimado a las rpm y eficiencia que se elijan. Muestra de dónde sale cada número.
+
+| Código | Significado | Cuenta |
+|---|---|---|
+| Primer número | m³ por día a 100 rpm | bpd por rpm = número × 6,29 ÷ 100 |
+| Segundo número | metros de columna de agua | psi = metros × 3,28 × 0,433 |
+| Por vuelta | volumen de las cavidades (4 · d · E · Pe) | cm³ = m³/d por rpm × 10⁶ ÷ 1.440 |
+
 ## Método
 
 | Paso | Cuenta |

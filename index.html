@@ -47,6 +47,36 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .caso button:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
 .firma{margin:0;font:600 .85rem var(--e-body);color:var(--e-ink)}
 .firma span{font-weight:400;color:var(--e-muted)}
+.decod{background:var(--e-card);border:1px solid var(--e-line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
+.decod h2{margin:0;font:650 1.15rem var(--e-display);color:var(--e-ink)}
+.decod h3{margin:0;font:600 .8rem var(--e-display);text-transform:uppercase;letter-spacing:.09em;color:var(--e-muted)}
+.decod p{margin:0;max-width:70ch;font:400 .92rem/1.5 var(--e-body);color:var(--e-muted)}
+.decod-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:860px){.decod-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:start}}
+.decod-entrada{display:grid;gap:12px;min-width:0}
+.decod-campo{display:grid;gap:4px;min-width:0;font:600 .92rem var(--e-body);color:var(--e-ink)}
+.decod-caja{display:flex;align-items:center;border:1px solid var(--e-line);border-radius:8px;background:var(--e-field)}
+.decod-caja input{width:100%;min-width:0;border:0;background:transparent;color:var(--e-ink);font:600 1.35rem var(--e-mono);padding:9px 12px;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.decod-caja input::-webkit-outer-spin-button,.decod-caja input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.decod-caja i{font:500 .85rem var(--e-mono);font-style:normal;color:var(--e-muted);padding-right:12px}
+.decod-dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.decod-dos .decod-caja input{font-size:1.1rem}
+.decod-chips{display:flex;flex-wrap:wrap;gap:6px}
+.decod-chips button{font:600 .85rem var(--e-mono);padding:7px 11px;border-radius:999px;border:1px solid var(--e-line);background:var(--e-field);color:var(--e-ink);cursor:pointer}
+.decod-chips small{font:400 .72rem var(--e-body);color:var(--e-muted)}
+.decod-chips button[aria-pressed="true"]{border-color:var(--e-accent);background:var(--e-accent);color:var(--e-on-accent)}
+.decod-chips button[aria-pressed="true"] small{color:var(--e-on-accent);opacity:.85}
+.decod button:focus-visible,.decod input:focus-visible{outline:2px solid var(--e-accent);outline-offset:2px}
+.decod-salida{margin:0;display:grid;gap:8px;min-width:0}
+.decod-salida div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;padding:10px 14px;border-radius:8px;background:var(--e-field);border:1px solid var(--e-line)}
+.decod-salida dt{font:600 .88rem var(--e-body);color:var(--e-muted)}
+.decod-salida dd{margin:0;font:700 1.25rem/1.15 var(--e-mono);text-align:right;color:var(--e-ink);font-variant-numeric:tabular-nums}
+.decod-salida dd small{display:block;font:500 .78rem var(--e-mono);color:var(--e-muted)}
+.decod-salida .clave{background:var(--e-accent);border-color:var(--e-accent)}
+.decod-salida .clave dt,.decod-salida .clave dd,.decod-salida .clave dd small{color:var(--e-on-accent)}
+.decod-salida .clave dd{font-size:1.6rem}
+.decod-pasos{margin:0;padding-left:20px;display:grid;gap:4px;font:400 .9rem/1.5 var(--e-body);color:var(--e-ink)}
+.decod-pasos b{font-family:var(--e-mono);font-weight:600}
 
 .esp{font-family:var(--e-body);color:var(--e-ink);font-size:15px;line-height:1.45}
 .esp *{box-sizing:border-box}
@@ -195,6 +225,32 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
       </tbody>
     </table></div>
     <button type="button" data-cargar-caso>Cargar este caso en la calculadora</button>
+  </section>
+  <section class="decod" data-decod aria-label="Decodificar la bomba">
+    <h2>Decodificar la bomba</h2>
+    <p>El código del estator dice cuánto mueve la bomba y cuánta presión aguanta. Escribe el modelo o toca uno.</p>
+    <div class="decod-grid">
+      <div class="decod-entrada">
+        <label class="decod-campo">Modelo de la bomba<span class="decod-caja"><input data-db="modelo" type="text" value="98-1580" spellcheck="false" autocomplete="off" autocapitalize="characters"></span></label>
+        <div class="decod-chips"><button type="button" data-modelo="56-D-1600" aria-pressed="false">56-D-1600 <small>Baker</small></button><button type="button" data-modelo="80-1600" aria-pressed="false">80-1600 <small>NOV</small></button><button type="button" data-modelo="98-1580" aria-pressed="false">98-1580 <small>NOV</small></button><button type="button" data-modelo="110-1600" aria-pressed="false">110-1600 <small>NOV</small></button><button type="button" data-modelo="165-1600" aria-pressed="false">165-1600 <small>NOV</small></button><button type="button" data-modelo="130-1600" aria-pressed="false">130-1600 <small>Weatherford</small></button><button type="button" data-modelo="200K1450" aria-pressed="false">200K1450 <small>KUDU</small></button><button type="button" data-modelo="20-40-2100" aria-pressed="false">20-40-2100 <small>Geremia</small></button></div>
+        <p data-db="tipo"></p>
+        <h3>Para estimar el caudal</h3>
+        <div class="decod-dos">
+          <label class="decod-campo">Velocidad<span class="decod-caja"><input data-db="rpm" type="number" inputmode="decimal" min="0" step="10" value="250"><i>rpm</i></span></label>
+          <label class="decod-campo">Eficiencia<span class="decod-caja"><input data-db="efic" type="number" inputmode="decimal" min="0" max="100" step="5" value="85"><i>%</i></span></label>
+        </div>
+      </div>
+      <dl class="decod-salida">
+        <div class="clave"><dt>Por cada rpm</dt><dd data-db="qrpm"></dd></div>
+        <div><dt>A 100 rpm</dt><dd data-db="q100"></dd></div>
+        <div><dt>Por vuelta del rotor</dt><dd data-db="vuelta"></dd></div>
+        <div><dt>Presión máxima</dt><dd data-db="psi"></dd></div>
+        <div><dt>Caudal estimado</dt><dd data-db="caudal"></dd></div>
+      </dl>
+    </div>
+    <h3>De dónde salen los números</h3>
+    <ol class="decod-pasos" data-db="pasos"></ol>
+    <p>1 barril = 42 galones = 0,159 m³, o sea 1 m³ = 6,29 barriles. 1 m = 3,28 ft. El agua dulce pesa 0,433 psi por pie. Weatherford y KUDU publican esta convención; los códigos de NOV encajan con ella, pero conviene confirmar en el catálogo del fabricante.</p>
   </section>
   <p class="pie">Método de campo del oriente venezolano: pandeo (subir hasta recuperar el peso) + espaciamiento; barra pulida de 40 ft con la barra libre medida sobre el cabezal (prensaestopa + cabezal + grampa + stick-up). Versión beta: verifica siempre con el repaseo y en el arranque. Los datos quedan guardados solo en este dispositivo.</p>
   <p class="firma">Desarrollado por César Rojas <span>· técnico en levantamiento artificial (BCP) · del metro y la cuenta a mano, a los datos</span></p>
@@ -465,6 +521,87 @@ document.querySelectorAll("[data-esp]").forEach(init);
   pintar();
   var cargar = document.querySelector("[data-cargar-caso]");
   if (cargar) cargar.addEventListener("click", function () { var b = document.querySelector('[data-ejemplo="reporte"]'); if (b) b.click(); var r = document.querySelector('[aria-label="Resultado"]'); if (r) r.scrollIntoView({ behavior: "smooth", block: "start" }); });
+})();</script>
+<script>(function () {
+const U = { bpd: 6.2898, psi: 14.2233, lb: 2.20462, ft: 3.28084, kgm: 1.48816 };
+
+function decodificarBomba(texto) {
+  const t = String(texto).trim().toUpperCase();
+  const kudu = t.match(/^(\d+(?:\.\d+)?)\s*K\s*(\d+)$/);
+  if (kudu) {
+    const m3 = Number(kudu[1]), metros = Number(kudu[2]);
+    const bpd100 = m3 * U.bpd;
+    return { tipo: "KUDU", bpd100, bpdRpm: bpd100 / 100, m3Rpm: m3 / 100, psi: metros * U.ft * 0.433, metros };
+  }
+  const otra = /[A-JL-Z]/.test(t);
+  const n = t.replace(/[^0-9.\-]/g, "").split("-").filter(Boolean).map(Number);
+  if (otra && n.length === 2 && n.every(isFinite)) {
+    const [m3, metros] = n;
+    const bpd100 = m3 * U.bpd;
+    return { tipo: "sin verificar", bpd100, bpdRpm: bpd100 / 100, m3Rpm: m3 / 100, psi: metros * U.ft * 0.433, metros };
+  }
+  if (n.length === 2 && n.every(isFinite)) {
+    const [m3, metros] = n;
+    const bpd100 = m3 * U.bpd;
+    return { tipo: "estándar", bpd100, bpdRpm: bpd100 / 100, m3Rpm: m3 / 100, psi: metros * U.ft * 0.433, metros };
+  }
+  if (n.length === 3 && n.every(isFinite)) {
+    const [p, serie, bpd500] = n;
+    const bpdRpm = bpd500 / 500;
+    return { tipo: "Geremia", bpd100: bpdRpm * 100, bpdRpm, m3Rpm: bpdRpm / U.bpd, psi: p * 100, etapas: p, od: serie / 10 };
+  }
+  return null;
+}
+
+const raiz = document.querySelector("[data-decod]");
+if (!raiz) return;
+const fmt = (v, d = 0) => Number(v).toLocaleString("es-VE", { minimumFractionDigits: d, maximumFractionDigits: d });
+const num = (v, max = 2) => Number(v).toLocaleString("es-VE", { maximumFractionDigits: max });
+const q = (k) => raiz.querySelector('[data-db="' + k + '"]');
+const put = (k, html) => { const el = q(k); if (el) el.innerHTML = html; };
+const TIPO = {
+  "estándar": "Convención: m³ por día a 100 rpm – metros de columna de agua.",
+  KUDU: "KUDU: m³ por día a 100 rpm, la K de KUDU y los metros de columna de agua.",
+  "sin verificar": "Si sigue la convención m³ por día – metros. La letra del medio no está verificada: confirmar en el catálogo.",
+  Geremia: "Geremia: etapas – serie – barriles por día a 500 rpm.",
+};
+function render() {
+  const texto = q("modelo").value.trim().toUpperCase();
+  raiz.querySelectorAll("[data-modelo]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.modelo === texto)));
+  const d = decodificarBomba(texto);
+  if (!d) {
+    put("tipo", "Formato no reconocido. Ejemplos: 98-1580, 200K1450 o 20-40-2100.");
+    ["qrpm", "q100", "vuelta", "psi", "caudal"].forEach((k) => put(k, "—"));
+    put("pasos", "");
+    return;
+  }
+  const rpm = Math.max(0, parseFloat(q("rpm").value) || 0), ef = Math.max(0, parseFloat(q("efic").value) || 0);
+  const m3 = d.m3Rpm * 100, cm3 = (d.m3Rpm * 1e6) / 1440, caudal = (d.bpdRpm * rpm * ef) / 100;
+  put("tipo", TIPO[d.tipo]);
+  put("qrpm", fmt(d.bpdRpm, 2) + " bpd<small>" + num(d.m3Rpm, 3) + " m³/d</small>");
+  put("q100", fmt(d.bpd100) + " bpd<small>" + num(m3, 1) + " m³/d</small>");
+  put("vuelta", fmt(cm3) + " cm³<small>" + num(cm3 / 1000, 2) + " litros</small>");
+  put("psi", fmt(d.psi) + " psi<small>" + (d.metros ? fmt(d.metros) + " m de agua" : d.etapas + " etapas × 100 psi") + "</small>");
+  put("caudal", fmt(caudal) + " bpd<small>a " + fmt(rpm) + " rpm y " + fmt(ef) + " %</small>");
+  const vuelta = "A 1 rpm el rotor da 1.440 vueltas al día: " + num(d.m3Rpm, 3) + " m³ ÷ 1.440 = <b>" + fmt(cm3) + " cm³ por vuelta</b>. Es el volumen de las cavidades: 4 · d · E · Pe.";
+  const real = "Caudal: " + fmt(d.bpdRpm, 2) + " × " + fmt(rpm) + " rpm × " + fmt(ef) + " % de eficiencia = <b>" + fmt(caudal) + " bpd</b>.";
+  const pasos = d.tipo === "Geremia" ? [
+    "<b>" + d.etapas + "</b> etapas × 100 psi por etapa = <b>" + fmt(d.psi) + " psi</b>.",
+    "<b>" + num(d.od * 10, 0) + "</b> = serie " + num(d.od, 1) + '" (diámetro exterior de la bomba).',
+    "<b>" + fmt(d.bpdRpm * 500) + "</b> = barriles por día a 500 rpm. Entre 500: <b>" + fmt(d.bpdRpm, 2) + " bpd por rpm</b>.",
+    vuelta, real,
+  ] : [
+    "<b>" + num(m3, 1) + "</b> = m³ por día a 100 rpm. Entre 100: <b>" + num(d.m3Rpm, 3) + " m³/d por rpm</b>.",
+    "Por 6,29 para pasar a barriles: " + num(d.m3Rpm, 3) + " × 6,29 = <b>" + fmt(d.bpdRpm, 2) + " bpd por rpm</b>.",
+    vuelta,
+    "<b>" + fmt(d.metros) + "</b> = metros de columna de agua: " + fmt(d.metros) + " × 3,28 × 0,433 = <b>" + fmt(d.psi) + " psi</b>.",
+    real,
+  ];
+  put("pasos", pasos.map((p) => "<li>" + p + "</li>").join(""));
+}
+["modelo", "rpm", "efic"].forEach((k) => q(k).addEventListener("input", render));
+raiz.querySelectorAll("[data-modelo]").forEach((b) => b.addEventListener("click", () => { q("modelo").value = b.dataset.modelo; render(); }));
+render();
 })();</script>
 </body>
 </html>
