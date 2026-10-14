@@ -77,6 +77,10 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
 .decod-salida .clave dd{font-size:1.6rem}
 .decod-pasos{margin:0;padding-left:20px;display:grid;gap:4px;font:400 .9rem/1.5 var(--e-body);color:var(--e-ink)}
 .decod-pasos b{font-family:var(--e-mono);font-weight:600}
+.decod-ojo{display:grid;gap:4px;padding:10px 12px;border-radius:8px;border:1px solid var(--e-warn);background:var(--e-warn-soft);font:400 .88rem/1.5 var(--e-body);color:var(--e-ink)}
+.decod-ojo[hidden]{display:none}
+.decod-ojo b{font-weight:700}
+.decod-ojo .t{font:700 .95rem var(--e-mono)}
 .decod-tabla{overflow-x:auto}
 .decod-tabla table{width:100%;border-collapse:collapse;font:400 .9rem/1.35 var(--e-body);color:var(--e-ink)}
 .decod-tabla th,.decod-tabla td{padding:7px 8px;border-bottom:1px solid var(--e-line);text-align:left;vertical-align:middle}
@@ -262,6 +266,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
     </div>
     <h3>De dónde salen los números</h3>
     <ol class="decod-pasos" data-db="pasos"></ol>
+    <div class="decod-ojo" data-db="error" role="note" hidden></div>
     <h3>Tabla rápida (toca un código para cargarlo)</h3>
     <div class="decod-tabla"><table>
       <thead><tr><th>Código</th><th class="r ancho">bpd a 100 rpm</th><th class="r">bpd por rpm</th><th class="r">A 300 rpm (teórico)</th><th class="r">Presión máx. (psi)</th></tr></thead>
@@ -579,7 +584,7 @@ const q = (k) => raiz.querySelector('[data-db="' + k + '"]');
 const put = (k, html) => { const el = q(k); if (el) el.innerHTML = html; };
 const TIPO = {
   "estándar": "Convención: m³ por día a 100 rpm – metros de columna de agua.",
-  KUDU: "KUDU (marca de SLB): m³ por día a 100 rpm – metros de columna de agua. La K va en lugar del guion: no entra en la cuenta.",
+  KUDU: "KUDU (marca de SLB): m³ por día a 100 rpm – metros de columna de agua. La K va en lugar del guion: no significa «mil» y no entra en la cuenta.",
   "sin verificar": "Si sigue la convención m³ por día – metros. La letra del medio no está verificada: confirmar en el catálogo.",
   Geremia: "Geremia: etapas – serie – barriles por día a 500 rpm.",
 };
@@ -591,6 +596,7 @@ function render() {
     put("tipo", "Formato no reconocido. Ejemplos: 98-1580, 200K1450 o 20-40-2100.");
     ["qrpm", "q100", "teorico", "vuelta", "psi", "caudal"].forEach((k) => put(k, "—"));
     put("pasos", "");
+    q("error").hidden = true;
     return;
   }
   const rpm = Math.max(0, parseFloat(q("rpm").value) || 0), ef = Math.max(0, parseFloat(q("efic").value) || 0);
@@ -612,7 +618,7 @@ function render() {
     "<b>" + fmt(d.bpdRpm * 500) + "</b> = barriles por día a 500 rpm. Entre 500: <b>" + fmt(d.bpdRpm, 2) + " bpd por rpm</b>.",
     teo, real, vuelta,
   ] : [
-    d.tipo === "KUDU" ? "La <b>K</b> va en lugar del guion: así escribe KUDU (SLB) sus modelos. No entra en la cuenta." : "",
+    d.tipo === "KUDU" ? "La <b>K</b> va en lugar del guion: así escribe KUDU (SLB) sus modelos. No significa «mil» (no son " + fmt(m3 * 1000) + ") y no entra en la cuenta." : "",
     "<b>" + num(m3, 1) + "</b> = m³ por día a 100 rpm. Entre 100: <b>" + num(d.m3Rpm, 3) + " m³/d por rpm</b>.",
     "Por 6,29 para pasar a barriles: " + num(d.m3Rpm, 3) + " × 6,29 = <b>" + fmt(d.bpdRpm, 2) + " bpd por rpm</b>.",
     "De cabeza, × 6 y súmale el 5 %: " + num(m3, 1) + " × 6 = " + fmt(m3 * 6) + "; + " + fmt(m3 * 0.3) + " = " + fmt(m3 * 6.3) + " → <b>" + fmt(m3 * 0.063, 1) + " por rpm</b>.",
@@ -621,6 +627,15 @@ function render() {
     vuelta,
   ].filter(Boolean);
   put("pasos", pasos.map((p) => "<li>" + p + "</li>").join(""));
+  // Error común: multiplicar el número del código por el factor por rpm, que ya lo trae adentro.
+  const f1 = Math.round(d.bpdRpm * 10) / 10, n = num(m3, 1), fx = fmt(f1, 1);
+  q("error").hidden = d.tipo === "Geremia";
+  if (d.tipo !== "Geremia") put("error",
+    '<span class="t">Error común: ' + n + " × " + fx + " ✗</span>" +
+    "<span>El " + fx + " ya trae el " + n + " adentro (" + n + " × 6,29 ÷ 100). Si los multiplicas, usas el " + n + " dos veces.</span>" +
+    "<span>Si haces " + n + " × " + fx + " = " + fmt(m3 * f1) + (rpm !== 100 ? " y lo llevas a " + fmt(rpm) + " rpm (× " + num(rpm / 100, 2) + "), da " + fmt((m3 * f1 * rpm) / 100) : "") + " en vez de <b>" + fmt(teorico) + " bpd</b>." +
+    (Math.abs(m3 / 100 - 1) < 0.15 ? " Con esta bomba casi no se nota porque " + n + " está cerca de 100; con la 200K1450 da el doble." : "") + "</span>" +
+    "<span><b>Con el " + fx + " en la mano, el " + n + " ya no se usa.</b> Cada paso usa solo el número anterior.</span>");
 }
 ["modelo", "rpm", "efic"].forEach((k) => q(k).addEventListener("input", render));
 raiz.querySelectorAll("[data-modelo]").forEach((b) => b.addEventListener("click", () => { q("modelo").value = b.dataset.modelo; render(); }));
