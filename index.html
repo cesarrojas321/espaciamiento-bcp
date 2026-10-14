@@ -210,6 +210,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         <div class="esp-total"><span>Profundidad del pin de paro</span><b data-o="ayProf">—</b></div>
         <small class="esp-nota" data-o="ayProfTxt"></small>
         <div class="esp-r"><span>Regla rápida: 1 pie por cada 1000 pies</span><b data-o="ayPie">—</b><small data-o="ayPieTxt"></small></div>
+        <div class="esp-r"><span>Constante de campo: profundidad × 48 ÷ 4065</span><b data-o="ayCte">—</b><small data-o="ayCteTxt"></small></div>
         <div class="esp-campo"><label for="esp-diam">Diámetro de cabilla</label><select id="esp-diam" data-ay="diam"><option value="1">1"</option><option value="1-1/8" selected>1-1/8"</option><option value="1-1/4">1-1/4"</option><option value="1-1/2">1-1/2"</option></select></div>
         <div class="esp-dos">
           <div class="esp-campo"><label for="esp-ayF">Carga por presión</label><div class="esp-step"><button type="button" data-delta="-500" data-para="ayF" aria-label="Restar 500">−</button><input id="esp-ayF" data-k="ayF" type="number" inputmode="decimal" step="500" min="0" value="6000"><span class="u">lb</span><button type="button" data-delta="500" data-para="ayF" aria-label="Sumar 500">+</button></div></div>
@@ -217,7 +218,7 @@ body{background:var(--e-bg);color:var(--e-ink);margin:0}
         </div>
         <div class="esp-r"><span>Con la ley de Hooke</span><b data-o="ayHooke">—</b><small data-o="ayHookeTxt"></small></div>
         <div class="esp-r"><span>Regla de campo según la cabilla</span><b data-o="ayRegla">—</b><small data-o="ayReglaTxt"></small></div>
-        <div class="esp-ej"><button type="button" data-usar="pie">Usar 1 ft por 1000 ft</button><button type="button" data-usar="regla">Usar la regla de la cabilla</button><button type="button" data-usar="hooke">Usar Hooke</button></div>
+        <div class="esp-ej"><button type="button" data-usar="pie">Usar 1 ft por 1000 ft</button><button type="button" data-usar="cte">Usar la constante</button><button type="button" data-usar="regla">Usar la regla de la cabilla</button><button type="button" data-usar="hooke">Usar Hooke</button></div>
       </div></details>
       <h3>Medidas del cabezal</h3>
       <small class="esp-nota">Valores de ejemplo: reemplázalos por lo que mides con la cinta en tu pozo.</small><div class="esp-dos"><div class="esp-campo"><label for="esp-prensa">Prensaestopa (stuffing box)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="prensa" aria-label="Restar 1">−</button><input id="esp-prensa" data-k="prensa" type="number" inputmode="decimal" step="1" min="0" value="24"><span class="u">pulg</span><button type="button" data-delta="1" data-para="prensa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-cabezal">Cabezal</label><div class="esp-step"><button type="button" data-delta="-1" data-para="cabezal" aria-label="Restar 1">−</button><input id="esp-cabezal" data-k="cabezal" type="number" inputmode="decimal" step="1" min="0" value="42"><span class="u">pulg</span><button type="button" data-delta="1" data-para="cabezal" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-grampa">Grampa</label><div class="esp-step"><button type="button" data-delta="-1" data-para="grampa" aria-label="Restar 1">−</button><input id="esp-grampa" data-k="grampa" type="number" inputmode="decimal" step="1" min="0" value="6"><span class="u">pulg</span><button type="button" data-delta="1" data-para="grampa" aria-label="Sumar 1">+</button></div></div><div class="esp-campo"><label for="esp-stick">Stick-up (sobre la grampa)</label><div class="esp-step"><button type="button" data-delta="-1" data-para="stick" aria-label="Restar 1">−</button><input id="esp-stick" data-k="stick" type="number" inputmode="decimal" step="1" min="0" value="12"><span class="u">pulg</span><button type="button" data-delta="1" data-para="stick" aria-label="Sumar 1">+</button></div></div></div>
@@ -529,7 +530,10 @@ function init(root) {
     out("ayPie", ft(pie) + " ft"); out("ayPieTxt", "1 ft × " + fmt(pies / 1000, 2) + " miles de pies. Equivale a 12 pulgadas por cada 1000 ft: la regla de la cabilla de 1 pulgada.");
     out("ayHooke", ft(hooke) + " ft"); out("ayHookeTxt", fmt(r.porCarga, 1) + '" de estiramiento con ' + fmt(F) + " lb a " + fmt(pies) + " ft + " + fmt(hol) + '" de holgura');
     out("ayRegla", ft(regla) + " ft"); out("ayReglaTxt", CABILLAS[sel.value].regla + '" por cada 1000 ft × ' + fmt(pies / 1000, 2) + " (conservadora, supone unas 25.000 lb)");
-    return { hooke: Math.round(hooke * 2) / 2, regla: Math.round(regla * 2) / 2, pie: Math.round(pie * 2) / 2 };
+    const cteIn = (pies * 48) / 4065, cte = (Math.ceil(cteIn / 6 - 1e-9) * 6) / 12;
+    out("ayCte", ft(cte) + " ft");
+    out("ayCteTxt", fmt(pies) + " × 48 ÷ 4065 = " + fmt(cteIn, 2) + " pulgadas; se redondea hacia arriba a " + fmt(cte * 12) + " pulgadas. Da casi lo mismo que 1 pie por cada 1000 pies (11,8 pulgadas por cada 1000 ft).");
+    return { hooke: Math.round(hooke * 2) / 2, regla: Math.round(regla * 2) / 2, pie: Math.round(pie * 2) / 2, cte };
   }
   function render() {
     const r = cuentaDeCampo(st);
